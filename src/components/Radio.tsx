@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChapterHeader, Tag } from "./ui";
+import { ChapterHeader, Tag, Paragraphs, renderTitle } from "./ui";
 import { Reveal } from "../lib/motion";
 import { useAmbience } from "./AudioContext";
-
-const FRAGMENTS = [
-  "Moradores afirmam ter visto…",
-  "…uma perna caminhar pelas paredes.",
-  "O rapaz deixou a casa assombrada.",
-  "O padre não quis se envolver.",
-  "Aguardem novas informações.",
-];
+import { radio } from "../content";
 
 function DialWaves({ live }: { live: boolean }) {
   return (
@@ -25,9 +18,7 @@ function DialWaves({ live }: { live: boolean }) {
           opacity={0}
           animate={live ? { opacity: [0, 0.85, 0] } : { opacity: 0 }}
           transition={
-            live
-              ? { duration: 1.4, repeat: Infinity, delay: i * 0.18, ease: "easeInOut" }
-              : { duration: 0 }
+            live ? { duration: 1.4, repeat: Infinity, delay: i * 0.18, ease: "easeInOut" } : { duration: 0 }
           }
         />
       ))}
@@ -39,6 +30,7 @@ export default function Radio() {
   const [live, setLive] = useState(false);
   const [idx, setIdx] = useState(0);
   const ambience = useAmbience();
+  const { disclaimers } = radio;
 
   const goLive = () => {
     setLive((v) => {
@@ -53,7 +45,7 @@ export default function Radio() {
 
   useEffect(() => {
     if (!live) return;
-    const t = window.setInterval(() => setIdx((i) => (i + 1) % FRAGMENTS.length), 3400);
+    const t = window.setInterval(() => setIdx((i) => (i + 1) % radio.fragments.length), 3400);
     return () => window.clearInterval(t);
   }, [live]);
 
@@ -63,27 +55,17 @@ export default function Radio() {
         <div className="absolute right-[-6rem] top-1/3 h-72 w-72 rounded-full bg-blood/[0.05] blur-3xl" />
       </div>
       <div className="relative mx-auto max-w-6xl">
-        <ChapterHeader
-          no="07"
-          kicker="rádio · transmissão arquivada"
-          title="A voz que ninguém gravou"
-        />
+        <ChapterHeader no="07" kicker="rádio · transmissão arquivada" title={renderTitle(radio.heading)} />
         <Reveal>
-          <p className="max-w-2xl text-lg text-bone/85">
-            O rádio fez o rumor correr a cidade numa madrugada. Não sobreviveu nenhuma gravação
-            daquele tempo — então aqui você sintoniza uma{" "}
-            <em className="text-paper">recriação artística</em> do que teria sido ouvir.
-          </p>
+          <Paragraphs text={radio.lead} className="max-w-2xl text-lg text-bone/85" />
         </Reveal>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          {/* radio chassis */}
           <Reveal>
             <div className="relative mx-auto max-w-md">
-              {/* body */}
               <div className="relative rounded-md border border-bone/25 bg-gradient-to-b from-[#1a1610] to-[#0d0b07] p-5 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)]">
                 <div className="flex items-center justify-between font-mono text-[0.55rem] uppercase tracking-[0.2em] text-stone">
-                  <span>RECIFE · RÁDIO</span>
+                  <span>{radio.bodyLabel}</span>
                   <span className="flex items-center gap-1.5">
                     <span
                       className={
@@ -91,16 +73,15 @@ export default function Radio() {
                         (live ? "bg-bloodsoft animate-pulse" : "bg-stone/40")
                       }
                     />
-                    on air
+                    {radio.onAir}
                   </span>
                 </div>
 
-                {/* dial screen */}
                 <div className="mt-3 rounded-sm border border-bone/20 bg-[#0a0805] p-4">
                   <div className="flex justify-between text-[0.55rem] font-mono uppercase tracking-widest text-stone/70">
-                    <span>530 AM</span>
-                    <span className="text-bloodsoft">FM 92.7</span>
-                    <span>1600</span>
+                    <span>{radio.am}</span>
+                    <span className="text-bloodsoft">{radio.fm}</span>
+                    <span>{radio.amMax}</span>
                   </div>
                   <div className="relative mt-2 h-10">
                     <div className="absolute inset-0 flex items-center justify-between">
@@ -111,7 +92,6 @@ export default function Radio() {
                         />
                       ))}
                     </div>
-                    {/* needle */}
                     <motion.div
                       className="absolute top-0 bottom-0 w-px bg-bloodsoft"
                       initial={false}
@@ -122,14 +102,13 @@ export default function Radio() {
                   </div>
                   <div className="mt-2 flex items-center gap-2 text-bone/80">
                     <span className="font-mono text-[0.55rem] uppercase tracking-[0.2em] text-stone">
-                      sintonia
+                      {radio.synth}
                     </span>
                     <span className="font-mono text-[0.8rem]">{live ? "92.7" : "— . —"}</span>
                     <DialWaves live={live} />
                   </div>
                 </div>
 
-                {/* controls */}
                 <div className="mt-4 flex items-center gap-3">
                   <button
                     onClick={goLive}
@@ -141,7 +120,7 @@ export default function Radio() {
                         : "border border-bone/30 text-bone hover:border-bone/60")
                     }
                   >
-                    {live ? "■ silenciar" : "▶ sintonizar"}
+                    {live ? radio.stop : radio.play}
                   </button>
                   <div className="flex gap-1.5">
                     {[0, 1, 2].map((k) => (
@@ -155,18 +134,16 @@ export default function Radio() {
                 </div>
               </div>
 
-              {/* antenna shadow deco */}
               <div className="mt-4 text-center font-mono text-[0.52rem] uppercase tracking-[0.28em] text-stone/60">
-                ondas que viajam mais rápido que o pé
+                {radio.footer}
               </div>
             </div>
           </Reveal>
 
-          {/* transmission readout */}
           <div className="flex flex-col justify-center">
             <Reveal>
               <div className="border-l-2 border-bone/25 pl-5">
-                <Tag>transmissão arquivada · não há gravação real</Tag>
+                <Tag>{disclaimers.tag}</Tag>
                 <div className="mt-5 min-h-[150px]">
                   <AnimatePresence mode="wait">
                     <motion.p
@@ -177,15 +154,14 @@ export default function Radio() {
                       transition={{ duration: 0.6 }}
                       className="font-serif text-2xl italic leading-snug text-bone sm:text-3xl"
                     >
-                      {live ? FRAGMENTS[idx] : "Sintonize o aparelho para escutar a transmissão."}
+                      {live ? radio.fragments[idx] : radio.idle}
                     </motion.p>
                   </AnimatePresence>
                 </div>
-                <p className="mt-4 max-w-md text-sm leading-relaxed text-stone">
-                  Em 1975 não havia gravação garantida dos programas da madrugada. O que ficou são
-                  relatos de quem ouviu — como os atribuídos ao radialista Jota Ferreira — e o eco
-                  que a voz deixou na memória da cidade.
-                </p>
+                <Paragraphs
+                  text={disclaimers.rec}
+                  className="mt-4 max-w-md text-sm leading-relaxed text-stone"
+                />
               </div>
             </Reveal>
           </div>

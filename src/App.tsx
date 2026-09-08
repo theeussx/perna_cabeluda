@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { meta } from "./content";
 import Film from "./components/Film";
 import Chrome from "./components/Chrome";
 import { AudioProvider } from "./components/AudioContext";
@@ -87,6 +88,9 @@ function Scroll() {
 
 export default function App() {
   useLenis();
+  useEffect(() => {
+    document.title = meta.documentTitle;
+  }, []);
   return (
     <AudioProvider>
       <Scroll />

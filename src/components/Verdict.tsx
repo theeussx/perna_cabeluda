@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChapterHeader } from "./ui";
-import { Reveal } from "../lib/motion";
+import { ChapterHeader, renderTitle } from "./ui";
+import { verdict } from "../content";
 
 type Step = "ask" | 1 | 2 | 3;
 
@@ -29,12 +29,7 @@ export default function Verdict() {
   return (
     <section id="veredito" className="relative flex min-h-screen items-center justify-center px-5 py-24">
       <div className="w-full max-w-3xl text-center">
-        <ChapterHeader
-          no="15"
-          kicker="verdade ou lenda"
-          title="VOCÊ ACREDITA?"
-          align="center"
-        />
+        <ChapterHeader no="15" kicker="verdade ou lenda" title={renderTitle(verdict.heading)} align="center" />
 
         <AnimatePresence mode="wait">
           {step === "ask" && (
@@ -45,28 +40,20 @@ export default function Verdict() {
               exit={{ opacity: 0 }}
               className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
             >
-              <button
-                onClick={() => pick("É uma lenda")}
-                className="w-full border border-bone/40 px-8 py-4 font-mono text-sm uppercase tracking-[0.2em] text-bone transition-colors hover:bg-bone hover:text-black sm:w-auto"
-              >
-                É uma lenda
-              </button>
-              <button
-                onClick={() => pick("Não tenho certeza")}
-                className="w-full border border-bone/40 px-8 py-4 font-mono text-sm uppercase tracking-[0.2em] text-bone transition-colors hover:bg-bone hover:text-black sm:w-auto"
-              >
-                Eu não tenho certeza
-              </button>
+              {verdict.buttons.map((b) => (
+                <button
+                  key={b}
+                  onClick={() => pick(b)}
+                  className="w-full border border-bone/40 px-8 py-4 font-mono text-sm uppercase tracking-[0.2em] text-bone transition-colors hover:bg-bone hover:text-black sm:w-auto"
+                >
+                  {b}
+                </button>
+              ))}
             </motion.div>
           )}
 
           {step !== "ask" && (
-            <motion.div
-              key="reveal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="mt-10"
-            >
+            <motion.div key="reveal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-10">
               <AnimatePresence>
                 {step === 1 && (
                   <motion.p
@@ -76,7 +63,7 @@ export default function Verdict() {
                     transition={{ duration: 0.9 }}
                     className="font-serif text-3xl leading-snug text-paper sm:text-4xl"
                   >
-                    Talvez essa seja a pergunta errada.
+                    {verdict.afterA}
                   </motion.p>
                 )}
                 {step === 2 && (
@@ -87,7 +74,7 @@ export default function Verdict() {
                     transition={{ duration: 1 }}
                     className="mx-auto max-w-2xl font-serif text-2xl leading-snug text-bone sm:text-3xl"
                   >
-                    Uma lenda não precisa ser verdadeira para revelar algo sobre quem a conta.
+                    {verdict.afterB}
                   </motion.p>
                 )}
                 {step === 3 && (
@@ -98,9 +85,8 @@ export default function Verdict() {
                     transition={{ duration: 1.2 }}
                   >
                     <p className="mx-auto max-w-xl text-base leading-relaxed text-[#c6bda2]">
-                      Você disse: <span className="text-paper italic">“{chosen}”</span>. E é exatamente
-                      aí que mora a história — não no pé que rasteja, mas no que essa rasteira diz
-                      sobre a cidade que a inventou.
+                      {verdict.afterC_prefix}{" "}
+                      <span className="italic text-paper">“{chosen}”</span>. {verdict.afterC}
                     </p>
                     <button
                       onClick={() => {
@@ -109,7 +95,7 @@ export default function Verdict() {
                       }}
                       className="mt-8 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-stone underline-offset-4 hover:text-bone hover:underline"
                     >
-                      ↺ responder de novo
+                      {verdict.retry}
                     </button>
                   </motion.div>
                 )}

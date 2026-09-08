@@ -31,7 +31,8 @@ npm run preview  # serve o build
 ```
 src/
   App.tsx                     — monta as seções na ordem narrativa
-  components/
+  content/index.ts            — ⭐ TODOS OS TEXTOS E DADOS DO SITE (edite aqui!)
+  components/                 — só leem os dados de content/ (quase nunca editar)
     Entrance.tsx              — 01 · RECIFE 1975, "você conhece essa história?"
     PernaReveal.tsx           — 02–03 · aparição (reveal por scroll) e revelação
     Archive.tsx               — 04 · ARQUIVO 1975 + FATO/RELATO/LENDA/INTERPRETAÇÃO
@@ -58,6 +59,20 @@ src/
 
 Assets (`public/art/*.webp`) são ilustrações originais geradas para este projeto;
 versos de cordel e composições são originais, sem reproduzir obras protegidas.
+
+### Como editar o conteúdo (futuro)
+
+Todo o texto, dados, títulos e listas ficam em **`src/content/index.ts`**, organizado
+por seção (entrance, reveal, archive, travel, newspaper, radio, cordel, contexto,
+symbol, mapSection, timeline, culture, cinema, verdict, youarenow, finale, ending).
+Os componentes apenas leem essas constantes — **não é preciso mexer em JSX/CSS** para
+alterar frases, datas, cartões, pontos do mapa, versos ou fontes.
+
+- Um texto com vários parágrafos é um *array* de strings.
+- `heading: { text, em }` — o trecho `em` aparece destacado em vermelho-escuro.
+- Atualize sempre as fontes em `ending.groups` ao mudar fatos.
+- Nunca invente datas, nomes ou citações; em caso de divergência entre fontes,
+  apresente a divergência (como em `archive.cards[].origem` e nos relatos do rádio).
 
 ## Notas editoriais importantes
 

@@ -1,5 +1,6 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useAmbience } from "./AudioContext";
+import { meta } from "../content";
 
 export default function Chrome() {
   const { scrollYProgress } = useScroll();
@@ -8,14 +9,12 @@ export default function Chrome() {
 
   return (
     <>
-      {/* top progress hairline */}
       <motion.div
         className="fixed left-0 top-0 z-[70] h-[2px] origin-left bg-gradient-to-r from-bloodsoft via-bone to-bloodsoft"
         style={{ scaleX: progress }}
         aria-hidden="true"
       />
 
-      {/* audio toggle */}
       <div className="fixed bottom-5 right-5 z-[70]">
         <button
           onClick={ambience.toggle}
@@ -39,9 +38,8 @@ export default function Chrome() {
         </button>
       </div>
 
-      {/* side grain vignette / chapter marker baseline */}
       <div className="pointer-events-none fixed bottom-5 left-5 z-[70] hidden font-mono text-[0.55rem] uppercase tracking-[0.3em] text-stone/60 sm:block">
-        Perna Cabeluda · Recife
+        {meta.cornerLabel}
       </div>
     </>
   );

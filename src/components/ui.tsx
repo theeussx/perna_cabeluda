@@ -2,6 +2,37 @@ import { useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { Reveal } from "../lib/motion";
 import { cn } from "../lib/cn";
+import type { Em } from "../content";
+
+/** Renders a heading title, coloring the optional `em` substring. */
+export function renderTitle(t: string | Em): ReactNode {
+  if (typeof t === "string") return t;
+  const { text, em } = t;
+  if (!em) return text;
+  const i = text.indexOf(em);
+  if (i < 0) return text;
+  return (
+    <>
+      {text.slice(0, i)}
+      <span className="text-bloodsoft">{em}</span>
+      {text.slice(i + em.length)}
+    </>
+  );
+}
+
+/** Renders an array of paragraph strings as separate <p> elements. */
+export function Paragraphs({ text, className }: { text: string | string[]; className?: string }) {
+  const items = Array.isArray(text) ? text : [text];
+  return (
+    <>
+      {items.map((p, i) => (
+        <p key={i} className={className}>
+          {p}
+        </p>
+      ))}
+    </>
+  );
+}
 
 /** Inline loader helper for section component mount animation. */
 export function useOnScreen<T extends HTMLElement>(rootMargin = "0px") {
@@ -30,8 +61,7 @@ export function ChapterHeader({
   kicker: string;
   title: ReactNode;
   align?: "left" | "center";
-}) {
-  return (
+}) {  return (
     <header className={cn("mb-12 md:mb-16", align === "center" && "text-center")}>
       <Reveal>
         <p className="font-mono text-[0.68rem] tracking-[0.3em] text-stone uppercase flex items-center gap-3">
