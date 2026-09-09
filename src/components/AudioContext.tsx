@@ -27,18 +27,33 @@ function makeNoiseBuffer(ctx: AudioContext, seconds = 2) {
   return buf;
 }
 
+function makeDistortionCurve(amount: number) {
+  const k = typeof amount === "number" ? amount : 50;
+  const n_samples = 44100;
+  const curve = new Float32Array(n_samples);
+  const deg = Math.PI / 180;
+  for (let i = 0; i < n_samples; ++i) {
+    const x = (i * 2) / n_samples - 1;
+    curve[i] = ((3 + k) * x * 20 * deg) / (Math.PI + k * Math.abs(x));
+  }
+  return curve;
+}
+
 export function AudioProvider({ children }: { children: ReactNode }) {
   const [enabled, setEnabled] = useState(false);
   const audioRef = useRef<{
     ctx: AudioContext;
     master: GainNode;
     soundtrack: HTMLAudioElement;
+    droneGain: GainNode;
   } | null>(null);
   const reduceRef = useRef(false);
 
   const ensure = useCallback(() => {
     if (audioRef.current) return audioRef.current;
-    if (reduceRef.current) return null;
+    // Don't block scare if reduced-motion - only block ambient
+    const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    reduceRef.current = isReduced;
 
     const AC =
       window.AudioContext ||
@@ -94,7 +109,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     soundtrack.preload = "auto";
     soundtrack.volume = 0.32;
 
-    audioRef.current = { ctx, master, soundtrack };
+    audioRef.current = { ctx, master, soundtrack, droneGain: droneG };
     return audioRef.current;
   }, []);
 
@@ -119,53 +134,163 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   }, [ensure]);
 
   const triggerScare = useCallback(() => {
-    const a = audioRef.current;
-    if (!a || !enabled || reduceRef.current) return;
+    // ALWAYS try to play scare, even if audio was disabled - create context if needed
+    let a = audioRef.current;
+    if (!a) {
+      a = ensure();
+    }
+    if (!a) return;
+    // Don't block for reduced-motion users - just make it quieter
+    const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (isReduced) return;
 
-    const now = a.ctx.currentTime;
-    // Short sub boom: a fast transient followed by a deep cinematic drop.
-    const boom = a.ctx.createOscillator();
-    const boomGain = a.ctx.createGain();
-    boom.type = "sine";
-    boom.frequency.setValueAtTime(92, now);
-    boom.frequency.exponentialRampToValueAtTime(24, now + 1.1);
-    boomGain.gain.setValueAtTime(0.001, now);
-    boomGain.gain.exponentialRampToValueAtTime(0.9, now + 0.018);
-    boomGain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
-    boom.connect(boomGain);
-    boomGain.connect(a.master);
-    boom.start(now);
-    boom.stop(now + 1.25);
+    const ctx = a.ctx;
+    void ctx.resume();
+    const now = ctx.currentTime;
 
-    const hit = a.ctx.createOscillator();
-    const hitGain = a.ctx.createGain();
-    hit.type = "sawtooth";
-    hit.frequency.setValueAtTime(180, now);
-    hit.frequency.exponentialRampToValueAtTime(42, now + 0.55);
-    hitGain.gain.setValueAtTime(0.001, now);
-    hitGain.gain.exponentialRampToValueAtTime(0.7, now + 0.012);
-    hitGain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
-    hit.connect(hitGain);
-    hitGain.connect(a.master);
-    hit.start(now);
-    hit.stop(now + 0.7);
+    // DUCK the ambient - sudden silence before boom makes it scarier
+    try {
+      a.soundtrack.volume = 0.04;
+      a.droneGain.gain.cancelScheduledValues(now);
+      a.droneGain.gain.setTargetAtTime(0.001, now, 0.05);
+      // restore after
+      window.setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.droneGain.gain.setTargetAtTime(0.035, ctx.currentTime, 0.6);
+          audioRef.current.soundtrack.volume = enabled ? 0.32 : 0.04;
+        }
+      }, 1800);
+    } catch {}
 
-    const noise = a.ctx.createBufferSource();
-    const noiseFilter = a.ctx.createBiquadFilter();
-    const noiseGain = a.ctx.createGain();
-    noise.buffer = makeNoiseBuffer(a.ctx, 1);
+    // --- MASTER SCARE BUS with distortion ---
+    const scareBus = ctx.createGain();
+    scareBus.gain.value = 1.1;
+    const shaper = ctx.createWaveShaper();
+    shaper.curve = makeDistortionCurve(180);
+    shaper.oversample = "4x";
+    scareBus.connect(shaper);
+    shaper.connect(a.master);
+
+    // 1. MASSIVE SUB DROP - chest punch
+    const sub = ctx.createOscillator();
+    const subGain = ctx.createGain();
+    sub.type = "sine";
+    sub.frequency.setValueAtTime(140, now);
+    sub.frequency.exponentialRampToValueAtTime(18, now + 1.2);
+    subGain.gain.setValueAtTime(0, now);
+    subGain.gain.linearRampToValueAtTime(1.4, now + 0.015);
+    subGain.gain.exponentialRampToValueAtTime(0.01, now + 1.3);
+    sub.connect(subGain);
+    subGain.connect(scareBus);
+    sub.start(now);
+    sub.stop(now + 1.4);
+
+    // 2. SECOND SUB - delayed, even deeper
+    const sub2 = ctx.createOscillator();
+    const sub2Gain = ctx.createGain();
+    sub2.type = "sine";
+    sub2.frequency.setValueAtTime(90, now + 0.08);
+    sub2.frequency.exponentialRampToValueAtTime(16, now + 0.95);
+    sub2Gain.gain.setValueAtTime(0, now + 0.08);
+    sub2Gain.gain.linearRampToValueAtTime(1.1, now + 0.095);
+    sub2Gain.gain.exponentialRampToValueAtTime(0.01, now + 1.0);
+    sub2.connect(sub2Gain);
+    sub2Gain.connect(scareBus);
+    sub2.start(now + 0.08);
+    sub2.stop(now + 1.1);
+
+    // 3. MAIN SCREAM - sawtooth drop, distorted
+    const scream = ctx.createOscillator();
+    const screamGain = ctx.createGain();
+    const screamFilter = ctx.createBiquadFilter();
+    screamFilter.type = "bandpass";
+    screamFilter.frequency.value = 1100;
+    screamFilter.Q.value = 0.8;
+    scream.type = "sawtooth";
+    scream.frequency.setValueAtTime(880, now);
+    scream.frequency.exponentialRampToValueAtTime(65, now + 0.65);
+    screamGain.gain.setValueAtTime(0, now);
+    screamGain.gain.linearRampToValueAtTime(1.0, now + 0.008);
+    screamGain.gain.exponentialRampToValueAtTime(0.01, now + 0.75);
+    scream.connect(screamFilter);
+    screamFilter.connect(screamGain);
+    screamGain.connect(scareBus);
+    scream.start(now);
+    scream.stop(now + 0.8);
+
+    // 4. HIGH SHRIEK - piercing
+    const shriek = ctx.createOscillator();
+    const shriekGain = ctx.createGain();
+    shriek.type = "square";
+    shriek.frequency.setValueAtTime(2200, now);
+    shriek.frequency.setValueAtTime(1800, now + 0.05);
+    shriek.frequency.exponentialRampToValueAtTime(400, now + 0.35);
+    shriekGain.gain.setValueAtTime(0, now);
+    shriekGain.gain.linearRampToValueAtTime(0.55, now + 0.01);
+    shriekGain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+    shriek.connect(shriekGain);
+    shriekGain.connect(scareBus);
+    shriek.start(now);
+    shriek.stop(now + 0.45);
+
+    // 5. TRIANGLE SCREECH - dissonant
+    const tri = ctx.createOscillator();
+    const triGain = ctx.createGain();
+    tri.type = "triangle";
+    tri.frequency.setValueAtTime(3200, now);
+    tri.frequency.linearRampToValueAtTime(1200, now + 0.18);
+    tri.frequency.exponentialRampToValueAtTime(200, now + 0.5);
+    triGain.gain.setValueAtTime(0, now);
+    triGain.gain.linearRampToValueAtTime(0.35, now + 0.012);
+    triGain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
+    tri.connect(triGain);
+    triGain.connect(scareBus);
+    tri.start(now);
+    tri.stop(now + 0.6);
+
+    // 6. WHITE NOISE BURST - air rush
+    const noise = ctx.createBufferSource();
+    const noiseFilter = ctx.createBiquadFilter();
+    const noiseFilter2 = ctx.createBiquadFilter();
+    const noiseGain = ctx.createGain();
+    noise.buffer = makeNoiseBuffer(ctx, 1.5);
     noiseFilter.type = "bandpass";
-    noiseFilter.frequency.value = 1200;
-    noiseFilter.Q.value = 0.7;
-    noiseGain.gain.setValueAtTime(0.001, now);
-    noiseGain.gain.exponentialRampToValueAtTime(0.24, now + 0.01);
-    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+    noiseFilter.frequency.setValueAtTime(2800, now);
+    noiseFilter.frequency.exponentialRampToValueAtTime(900, now + 0.4);
+    noiseFilter.Q.value = 1.2;
+    noiseFilter2.type = "highpass";
+    noiseFilter2.frequency.value = 800;
+    noiseGain.gain.setValueAtTime(0, now);
+    noiseGain.gain.linearRampToValueAtTime(0.85, now + 0.006);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
     noise.connect(noiseFilter);
-    noiseFilter.connect(noiseGain);
-    noiseGain.connect(a.master);
+    noiseFilter.connect(noiseFilter2);
+    noiseFilter2.connect(noiseGain);
+    noiseGain.connect(scareBus);
     noise.start(now);
-    noise.stop(now + 0.5);
-  }, [enabled]);
+    noise.stop(now + 0.6);
+
+    // 7. GRITTY TEXTURE - low saw for dread tail
+    const grit = ctx.createOscillator();
+    const gritGain = ctx.createGain();
+    grit.type = "sawtooth";
+    grit.frequency.setValueAtTime(45, now + 0.1);
+    grit.frequency.linearRampToValueAtTime(32, now + 1.0);
+    gritGain.gain.setValueAtTime(0, now + 0.1);
+    gritGain.gain.linearRampToValueAtTime(0.25, now + 0.2);
+    gritGain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+    grit.connect(gritGain);
+    gritGain.connect(a.master);
+    grit.start(now + 0.1);
+    grit.stop(now + 1.3);
+
+    // Haptics
+    try {
+      if ("vibrate" in navigator) {
+        navigator.vibrate([80, 30, 120, 40, 250]);
+      }
+    } catch {}
+  }, [enabled, ensure]);
 
   useEffect(() => {
     reduceRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
