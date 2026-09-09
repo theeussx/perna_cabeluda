@@ -70,7 +70,7 @@ export const archive = {
       id: "ocorrencia",
       label: "O primeiro registro",
       heading: "Uma “perna fantasma” em Tiúma",
-      body: "Entre 10 e 13 de dezembro de 1975, o Diário de Pernambuco publicou uma série de notas, sem assinatura, sobre uma suposta aparição na casa de José Luís Borges e do filho Wanderley, na localidade de Tiúma (bairro descrito também como “Usina Tiúma”), em São Lourenço da Mata, Região Metropolitana do Recife.",
+      body: "Entre 10 e 13 de dezembro de 1975, o Diário de Pernambuco publicou notas, sem assinatura, sobre uma suposta aparição na casa de José Luís Borges e do filho Wanderley, na localidade de Tiúma (bairro descrito também como “Usina Tiúma”), em São Lourenço da Mata, Região Metropolitana do Recife.",
       tags: ["FATO", "10–13 dez 1975", "Diário de Pernambuco"],
     },
     {
@@ -84,7 +84,7 @@ export const archive = {
       id: "origem",
       label: "Quem criou?",
       heading: "Uma autoria disputada",
-      body: "Não há consenso sobre a origem: o radialista Jota Ferreira e o escritor Raimundo Carrero reivindicam papéis diferentes na criação/popularização, e há dúvida se o programa de rádio veio antes ou depois dos textos do Diário de Pernambuco. Como não há gravação, a história sempre foi contada pela memória dos envolvidos.",
+      body: "Não há consenso sobre a origem: o radialista Jota Ferreira e o escritor Raimundo Carrero são associados a momentos diferentes da criação e da popularização, e há dúvida sobre a ordem exata entre o rádio e os textos do Diário de Pernambuco. Como não há gravação, parte da história chegou até nós pela memória dos envolvidos.",
       tags: ["DIVERGÊNCIA", "1975–1976", "sem consenso"],
     },
   ],
@@ -127,7 +127,7 @@ export const travel = {
   stages: [
     { id: "relato", label: "Relato", era: "1970", glyph: "⟦", title: "Uma voz numa noite", body: "Alguém diz que viu; outro escuta, duvida e repete. Antes de qualquer jornal ou tela, a história já existe — na boca, no medo, no desejo de contar." },
     { id: "jornal", label: "Jornal", era: "1970", glyph: "§", title: "A página que registra", body: "Em dezembro de 1975 o Diário de Pernambuco noticia a “perna fantasma” de Tiúma. O papel transforma um rumor local num caso conhecido — discutido, ainda que nunca provado." },
-    { id: "radio", label: "Rádio", era: "1970", glyph: "≈", title: "A voz que alcança milhares", body: "Relatos ao vivo, num noticiário da madrugada atribuído ao jornalista Jota Ferreira, fizeram a história atravessar bairros numa noite. A voz viaja mais rápido que o pé." },
+    { id: "radio", label: "Rádio", era: "1970", glyph: "≈", title: "A voz que alcança milhares", body: "Relatos e comentários em programas jornalísticos associados a Jota Ferreira e Geraldo Freire ajudaram a fazer a história atravessar bairros. A voz viaja mais rápido que o pé." },
     { id: "boca", label: "Boca a boca", era: "1970", glyph: "◠", title: "Cada pessoa, uma versão", body: "Recontada de casa em casa, a perna ganha detalhes: tamanho, unhas, pelos, quem ela pegou. O boca a boca não copia a história — a inventa de novo a cada vez." },
     { id: "cordel", label: "Cordel", era: "1970", glyph: "❧", title: "O verso que vira impresso", body: "Pouco depois do caso, a lenda entrou em cordel — por exemplo, nos folhetos do poeta José Soares. Impressa em cordel, a história já não depende de quem a conta; depende de quem a lê." },
     { id: "cultura", label: "Cultura popular", era: "1970", glyph: "♪", title: "Do medo à folia", body: "O pavor vira “grea” — brincadeira. A perna entra em marchinhas, troças e fantasias de carnaval (já em 1976). Assustar deixa de ser a única função; divertir também." },
@@ -150,7 +150,7 @@ export const newspaper = {
       date: "quarta · 10 dez 1975",
       rubric: "Segundo Caderno · sem assinatura",
       headline: "Perna fantasma surge em moradia de Tiúma",
-      deck: "Uma sombra de perna teria passeado pelas paredes de uma casa em Tiúma, São Lourenço da Mata, a cerca de 50 km do Recife. O assunto, segundo o jornal, já se arrastava por uns vinte dias.",
+      deck: "Uma sombra de perna teria passeado pelas paredes de uma casa em Tiúma, São Lourenço da Mata, na Região Metropolitana do Recife. O assunto, segundo o jornal, já se arrastava por uns vinte dias.",
       cols: [
         "São Lourenço da Mata. O Diário de Pernambuco noticiou que uma residência da localidade de Tiúma estaria recebendo, segundo moradores, uma “perna” sem corpo. O caso teria sido relatado primeiro por um rapaz, Wanderley Borges, que vivia ali com o pai, José Luís Borges.",
         "Na versão impressa, o jovem teria visto a “perna” passeando pelas paredes da casa e, assustado, decidido dormir em outro lugar. Dias depois, o próprio pai relataria o mesmo fenômeno.",
@@ -189,10 +189,10 @@ export const newspaper = {
 /** ===================== 07 · RÁDIO ===================== */
 export const radio = {
   heading: { text: "A voz que ninguém gravou" },
-  lead: "O rádio fez o rumor correr a cidade numa madrugada. Não sobreviveu nenhuma gravação daquele tempo — então aqui você sintoniza uma recriação artística do que teria sido ouvir.",
+  lead: "O rádio ajudou o rumor a correr pela cidade em programas e plantões jornalísticos da época. Não sobreviveu nenhuma gravação daquele período — então aqui você sintoniza uma recriação artística do que teria sido ouvir.",
   disclaimers: {
     tag: "transmissão arquivada · não há gravação real",
-    rec: "Em 1975 não havia gravação garantida dos programas da madrugada. O que ficou são relatos de quem ouviu — como os atribuídos ao radialista Jota Ferreira, ao lado do apresentador Geraldo Freire — e o eco que a voz deixou na memória da cidade.",
+    rec: "Em 1975 não há registro sonoro preservado dos programas que ajudaram a espalhar a história. O que ficou são relatos associados ao radialista Jota Ferreira e ao apresentador Geraldo Freire — e o eco que essas vozes deixaram na memória da cidade.",
   },
   idle: "Sintonize o aparelho para escutar a transmissão.",
   fragments: [
@@ -264,11 +264,11 @@ export const symbol = {
 /** ===================== 11 · MAPA ===================== */
 export const mapSection = {
   heading: { text: "Onde a lenda andou" },
-  lead: "Um mapa estilizado — fora de escala — da capital e da Região Metropolitana. Os pontos abrem pequenos fragmentos. Use-os como referência geográfica e cultural, e não como prova de ocorrências.",
-  mapNote: "mapa estilizado · fora de escala",
+  lead: "Um mapa real da capital e da Região Metropolitana, com os pontos culturais associados à circulação da lenda. Use-os como referência geográfica e cultural, e não como prova de ocorrências.",
+  mapNote: "cartografia real · pontos culturais",
   compass: { n: "N", arrow: "▲" },
   points: [
-    { id: "tiuma", x: 16, y: 27, name: "Tiúma · São Lourenço da Mata", tag: "registro", frag: "Onde a “perna fantasma” teria aparecido em dezembro de 1975, segundo o Diário de Pernambuco. Município da Região Metropolitana do Recife (a cerca de 50 km da capital). Ponto de registro — não de prova." },
+    { id: "tiuma", x: 16, y: 27, name: "Tiúma · São Lourenço da Mata", tag: "registro", frag: "Onde a “perna fantasma” teria aparecido em dezembro de 1975, segundo o Diário de Pernambuco. Tiúma é um bairro de São Lourenço da Mata, na Região Metropolitana do Recife. Ponto de registro — não de prova." },
     { id: "olinda", x: 46, y: 11, name: "Olinda", tag: "cultura", frag: "Referência cultural: a crônica ficcional de Raimundo Carrero, em fevereiro de 1976, chamava-se “Perna Cabeluda chega em Olinda”. É ficção jornalística, não ocorrência." },
     { id: "santo", x: 58, y: 25, name: "Santo Amaro", tag: "referência", frag: "Bairro da capital, usado aqui apenas como referência geográfica e cultural do Recife — palco de lendas e da vida popular da cidade." },
     { id: "boa", x: 50, y: 44, name: "Boa Vista", tag: "referência", frag: "Bairro central do Recife. Referência geográfica de uma cidade inteira que circulou a história de boca em boca." },
@@ -287,7 +287,7 @@ export const timeline = {
     { y: "1975", t: "Em dezembro, o Diário de Pernambuco noticia a “perna fantasma” de Tiúma, em São Lourenço da Mata — o primeiro registro jornalístico conhecido da lenda.", tag: "registro" },
     { y: "1976", t: "Em janeiro, o colunista Paulo Fernando Craveiro fala em “perna cabeluda”; em fevereiro, Raimundo Carrero publica “Perna Cabeluda chega em Olinda” e o cordelista José Soares lança folhetos sobre o caso.", tag: "cultura" },
     { y: "anos seguintes", t: "Pelo relato oral, pelo rádio, pelo cordel e pelo carnaval (troças e marchinhas já em 1976), a perna atravessa a cidade e os estados vizinhos.", tag: "circulação" },
-    { y: "1990", t: "A lenda é reapropriada pela cultura pernambucana contemporânea: aparece na letra de Chico Science em “Da Lama ao Caos” (1994) e vira tema de documentário (1996).", tag: "reapropriação" },
+    { y: "1994–1997", t: "A lenda é reapropriada pela cultura pernambucana contemporânea: aparece na letra de Chico Science em “Da Lama ao Caos” (1994) e vira tema de documentário (1997).", tag: "reapropriação" },
     { y: "2025", t: "A lenda volta ao debate público quando o filme O Agente Secreto, de Kleber Mendonça Filho, a recria numa trama sobre o Recife da ditadura.", tag: "cinema" },
     { y: "2026", t: "Meio século depois, a história chega a esta experiência digital — e, se você contar o que leu, segue adiante.", tag: "você" },
   ],
@@ -418,7 +418,7 @@ export const ending = {
       items: [
         { t: "O Agente Secreto (2025)", d: "Filme de Kleber Mendonça Filho que recria a lenda num Recife do fim da ditadura." },
         { t: "Da Lama ao Caos (1994)", d: "Disco de Chico Science & Nação Zumbi; a lenda é citada na letra de “Banditismo por uma Questão de Classe”." },
-        { t: "A Perna Cabeluda (documentário, 1996)", d: "Documentário sobre a lenda e seus criadores, citado por estudos sobre o tema." },
+        { t: "A Perna Cabiluda (documentário, 1997)", d: "Documentário de 1997 sobre a lenda da Perna Cabeluda e sua presença no imaginário recifense." },
         { t: "Cordel e xilogravura", d: "Referência estética. As ilustrações e versos deste site são originais e não reproduzem obras existentes." },
       ],
     },
