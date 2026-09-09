@@ -370,7 +370,7 @@ export const participants = {
     { name: "Erison Carlos", role: "Apresentador 'Como uma historia viaja?'" },
     { name: "Luiz Henrique", role: "Apresentador 'Quando o pavor vira cultura.'" },
     { name: "Lucas Henrique", role: "Apresentador 'A voz que ninguém gravou.'" },
-    { name: "Davi Guedes", role: "null" },
+    { name: "Davi Guedes", role: "Apresentador 'A página que registrou.'" },
     { name: "Miquel Vinicius", role: "Apresentador 'Ela voltou para a tela.'" },
   ],
 };
