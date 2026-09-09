@@ -2,15 +2,12 @@ import { ChapterHeader, Tag, renderTitle } from "./ui";
 import { Reveal } from "../lib/motion";
 import { participants } from "../content";
 
-/** Initials for a name — falls back to a glyph when the name is a placeholder. */
+/** Iniciais do nome (primeira letra do primeiro e do último nome). */
 function initials(name: string): string {
-  const isPlaceholder = /^nome\s+do\s+participante/i.test(name);
-  if (isPlaceholder) return "—";
   const words = name.trim().split(/\s+/);
+  if (words.length === 0) return "";
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
-  const first = words[0][0];
-  const last = words[words.length - 1][0];
-  return `${first}${last}`.toUpperCase();
+  return `${words[0][0]}${words[words.length - 1][0]}`.toUpperCase();
 }
 
 export default function Participants() {
@@ -33,9 +30,9 @@ export default function Participants() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-px bg-bone/10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-px bg-bone/10 sm:grid-cols-2 lg:grid-cols-4">
           {participants.people.map((p, i) => (
-            <Reveal key={p.name + i} delay={(i % 3) * 0.06}>
+            <Reveal key={p.name + i} delay={(i % 4) * 0.06}>
               <article className="group relative h-full bg-ink p-7 transition-colors hover:bg-[#0e0d09]">
                 <div className="flex items-start justify-between">
                   <div className="flex h-14 w-14 items-center justify-center border border-bone/20 bg-coal font-serif text-xl text-bloodsoft transition-colors group-hover:border-bloodsoft/50">

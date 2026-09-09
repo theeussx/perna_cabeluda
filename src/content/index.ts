@@ -357,20 +357,21 @@ export const participants = {
   eyebrow: "participantes · quem fez este trabalho",
   heading: { text: "Quem fez esta história", em: "acontecer" },
   lead: [
-    "Este projeto é um trabalho escolar do Setembro Literário. Foi feito a nove mãos — pesquisa, texto, design, código e apresentação — para contar como uma lenda do Recife continua viva, meio século depois.",
+    "Este projeto é um trabalho escolar do Setembro Literário. Foi feito a oito mãos — pesquisa, texto, design, código e apresentação — para contar como uma lenda do Recife continua viva, meio século depois.",
   ],
-  outro: "Se esta página tivesse um décimo elo, seria quem lê. Obrigado por chegar até aqui.",
+  outro: "Se esta página tivesse mais um elo, seria quem lê. Obrigado por chegar até aqui.",
+
+
   /** Edite a lista abaixo com os nomes e funções reais da equipe. */
   people: [
-    { name: "Nome do Participante 1", role: "pesquisa" },
-    { name: "Nome do Participante 2", role: "texto" },
-    { name: "Nome do Participante 3", role: "design" },
-    { name: "Nome do Participante 4", role: "programação" },
-    { name: "Nome do Participante 5", role: "apresentação" },
-    { name: "Nome do Participante 6", role: "pesquisa" },
-    { name: "Nome do Participante 7", role: "texto" },
-    { name: "Nome do Participante 8", role: "design" },
-    { name: "Nome do Participante 9", role: "apresentação" },
+    { name: "Mateus Henrique", role: "Desenvolvedor" },
+    { name: "Arthur Felipe", role: "Apresentador 'Nem só do sobrenatural vivia o medo.'" },
+    { name: "Braga", role: "Apresentador 'A lenda que virou verso.'" },
+    { name: "Erison Carlos", role: "Apresentador 'Como uma historia viaja?'" },
+    { name: "Luiz Henrique", role: "Apresentador 'Quando o pavor vira cultura.'" },
+    { name: "Lucas Henrique", role: "Apresentador 'A voz que ninguém gravou.'" },
+    { name: "Davi Guedes", role: "null" },
+    { name: "Miquel Vinicius", role: "Apresentador 'Ela voltou para a tela.'" },
   ],
 };
 
