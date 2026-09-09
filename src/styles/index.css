@@ -258,6 +258,15 @@ h3 {
   transition: opacity 80ms linear, transform 900ms cubic-bezier(.2,.7,.2,1);
 }
 .jumpscare.is-visible { opacity: 1; transform: scale(1); }
+.jumpscare.is-visible::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: #efe9d8;
+  opacity: 0;
+  animation: scare-flash 260ms ease-out both;
+}
 .jumpscare-image {
   position: absolute;
   height: 125%;
@@ -265,7 +274,7 @@ h3 {
   max-width: none;
   object-fit: contain;
   filter: contrast(1.35) brightness(0.48) saturate(0.75) sepia(0.18);
-  animation: scare-shake 95ms steps(2, end) infinite;
+  animation: scare-shake 55ms steps(2, end) infinite;
 }
 .jumpscare-noise {
   position: absolute;
@@ -291,6 +300,33 @@ h3 {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   text-shadow: 0 0 14px #000;
+}
+.jumpscare-boom {
+  position: relative;
+  z-index: 3;
+  margin-top: -8vh;
+  color: #efe9d8;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: clamp(4rem, 16vw, 13rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+  opacity: 0;
+  text-shadow: 0 5px 0 #8a1e16, 0 0 35px rgba(138, 30, 22, 0.9);
+  transform: scale(1.7) rotate(-4deg);
+}
+.jumpscare.is-visible .jumpscare-boom {
+  animation: scare-boom 900ms cubic-bezier(.1,.8,.2,1) 70ms both;
+}
+@keyframes scare-flash {
+  0% { opacity: 0.88; }
+  100% { opacity: 0; }
+}
+@keyframes scare-boom {
+  0% { opacity: 0; transform: scale(1.7) rotate(-4deg); }
+  8% { opacity: 1; transform: scale(0.88) rotate(2deg); }
+  25% { opacity: 1; transform: scale(1.1) rotate(-1deg); }
+  100% { opacity: 0; transform: scale(1) rotate(0); }
 }
 @keyframes scare-shake {
   0%, 100% { transform: translate(0, 0) scale(1); }

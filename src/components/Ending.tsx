@@ -37,6 +37,7 @@ export default function Ending() {
         <div className={"jumpscare " + (scareVisible ? "is-visible" : "")} aria-hidden="true">
           <div className="jumpscare-noise" />
           <img src="/art/leg-hero.webp" alt="" className="jumpscare-image" />
+          <strong className="jumpscare-boom">BOO!</strong>
           <span className="jumpscare-caption">você ainda está aí?</span>
         </div>
       </section>

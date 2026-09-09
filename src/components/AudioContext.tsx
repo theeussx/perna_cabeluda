@@ -123,13 +123,27 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     if (!a || !enabled || reduceRef.current) return;
 
     const now = a.ctx.currentTime;
+    // Short sub boom: a fast transient followed by a deep cinematic drop.
+    const boom = a.ctx.createOscillator();
+    const boomGain = a.ctx.createGain();
+    boom.type = "sine";
+    boom.frequency.setValueAtTime(92, now);
+    boom.frequency.exponentialRampToValueAtTime(24, now + 1.1);
+    boomGain.gain.setValueAtTime(0.001, now);
+    boomGain.gain.exponentialRampToValueAtTime(0.9, now + 0.018);
+    boomGain.gain.exponentialRampToValueAtTime(0.001, now + 1.2);
+    boom.connect(boomGain);
+    boomGain.connect(a.master);
+    boom.start(now);
+    boom.stop(now + 1.25);
+
     const hit = a.ctx.createOscillator();
     const hitGain = a.ctx.createGain();
     hit.type = "sawtooth";
     hit.frequency.setValueAtTime(180, now);
     hit.frequency.exponentialRampToValueAtTime(42, now + 0.55);
     hitGain.gain.setValueAtTime(0.001, now);
-    hitGain.gain.exponentialRampToValueAtTime(0.42, now + 0.015);
+    hitGain.gain.exponentialRampToValueAtTime(0.7, now + 0.012);
     hitGain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
     hit.connect(hitGain);
     hitGain.connect(a.master);
