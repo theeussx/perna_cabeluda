@@ -1,5 +1,6 @@
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useAmbience } from "./AudioContext";
+import { scrollToId } from "../lib/lenis";
 import { meta } from "../content";
 
 export default function Chrome() {
@@ -15,7 +16,16 @@ export default function Chrome() {
         aria-hidden="true"
       />
 
-      <div className="fixed bottom-5 right-5 z-[70]">
+      <div className="fixed bottom-5 right-5 z-[70] flex items-center gap-2">
+        <button
+          onClick={() => scrollToId("participantes")}
+          aria-label="Ver os participantes do trabalho"
+          title="Ver os participantes do trabalho"
+          className="flex items-center gap-2 border border-bone/20 bg-black/30 px-3 py-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-bone backdrop-blur-sm transition-colors hover:border-bone/60 hover:bg-black/50 hover:text-paper"
+        >
+          <span aria-hidden="true">☷</span>
+          participantes
+        </button>
         <button
           onClick={ambience.toggle}
           aria-pressed={ambience.enabled}

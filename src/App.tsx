@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { meta } from "./content";
+import { setLenis } from "./lib/lenis";
 import Film from "./components/Film";
 import Chrome from "./components/Chrome";
 import { AudioProvider } from "./components/AudioContext";
@@ -20,6 +21,7 @@ import Culture from "./components/Culture";
 import Cinema from "./components/Cinema";
 import Verdict from "./components/Verdict";
 import YouAreNow from "./components/YouAreNow";
+import Participants from "./components/Participants";
 import Finale from "./components/Finale";
 import Jumpscare from "./components/Jumpscare";
 import Ending from "./components/Ending";
@@ -29,6 +31,7 @@ function useLenis() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
     const lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
+    setLenis(lenis);
     let raf = 0;
     const loop = (time: number) => {
       lenis.raf(time);
@@ -38,6 +41,7 @@ function useLenis() {
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
+      setLenis(null);
     };
   }, []);
 }
@@ -81,6 +85,7 @@ function Scroll() {
       <Cinema />
       <Verdict />
       <YouAreNow />
+      <Participants />
       <Finale />
       <Jumpscare />
       <Ending />

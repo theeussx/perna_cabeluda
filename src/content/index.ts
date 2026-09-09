@@ -350,6 +350,30 @@ export const youarenow = {
   body: "Jornal, rádio, cordel, carnaval, cinema, internet. O que nunca muda é a pergunta que cada meio faz a quem escuta: você acredita?",
 };
 
+/** ===================== 17 · QUEM FEZ ===================== */
+export const participants = {
+  chapterNo: "17",
+  kicker: "equipe",
+  eyebrow: "participantes · quem fez este trabalho",
+  heading: { text: "Quem fez esta história", em: "acontecer" },
+  lead: [
+    "Este projeto é um trabalho escolar do Setembro Literário. Foi feito a nove mãos — pesquisa, texto, design, código e apresentação — para contar como uma lenda do Recife continua viva, meio século depois.",
+  ],
+  outro: "Se esta página tivesse um décimo elo, seria quem lê. Obrigado por chegar até aqui.",
+  /** Edite a lista abaixo com os nomes e funções reais da equipe. */
+  people: [
+    { name: "Nome do Participante 1", role: "pesquisa" },
+    { name: "Nome do Participante 2", role: "texto" },
+    { name: "Nome do Participante 3", role: "design" },
+    { name: "Nome do Participante 4", role: "programação" },
+    { name: "Nome do Participante 5", role: "apresentação" },
+    { name: "Nome do Participante 6", role: "pesquisa" },
+    { name: "Nome do Participante 7", role: "texto" },
+    { name: "Nome do Participante 8", role: "design" },
+    { name: "Nome do Participante 9", role: "apresentação" },
+  ],
+};
+
 /** ===================== FINAL ===================== */
 export const finale = {
   lines: [
@@ -442,5 +466,6 @@ export const chapters = [
   { no: "14", kicker: "cinema", title: "ela voltou para a tela" },
   { no: "15", kicker: "veredito", title: "VOCÊ ACREDITA?" },
   { no: "16", kicker: "você", title: "a história chegou até você" },
+  { no: "17", kicker: "equipe", title: "quem fez esta história acontecer" },
   { no: "final", kicker: "final", title: "1975 → 2026" },
 ];
