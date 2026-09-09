@@ -1,10 +1,46 @@
+import { useEffect, useRef, useState } from "react";
 import { Reveal, TextReveal } from "../lib/motion";
 import { Tag, Paragraphs } from "./ui";
 import { ending, meta } from "../content";
+import { useAmbience } from "./AudioContext";
 
 export default function Ending() {
+  const { triggerScare } = useAmbience();
+  const scareRef = useRef<HTMLElement | null>(null);
+  const [scareVisible, setScareVisible] = useState(false);
+  const scareTriggered = useRef(false);
+
+  useEffect(() => {
+    const target = scareRef.current;
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || scareTriggered.current) return;
+        scareTriggered.current = true;
+        setScareVisible(true);
+        triggerScare();
+        window.setTimeout(() => setScareVisible(false), 1100);
+      },
+      { threshold: 0.62 },
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [triggerScare]);
+
   return (
     <>
+      <section ref={scareRef} aria-label="Último susto antes dos créditos" className="relative flex min-h-[42vh] items-center justify-center overflow-hidden bg-black px-6 py-24">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(65%_70%_at_50%_50%,rgba(138,30,22,0.16),transparent_72%)]" />
+        <p className="relative z-10 max-w-md text-center font-mono text-[0.62rem] uppercase tracking-[0.35em] text-stone">
+          o último registro antes do arquivo
+        </p>
+        <div className={"jumpscare " + (scareVisible ? "is-visible" : "")} aria-hidden="true">
+          <div className="jumpscare-noise" />
+          <img src="/art/leg-hero.webp" alt="" className="jumpscare-image" />
+          <span className="jumpscare-caption">você ainda está aí?</span>
+        </div>
+      </section>
+
       <section className="relative flex min-h-screen items-center justify-center bg-black px-6 py-28 text-center">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_50%_at_50%_108%,rgba(138,30,22,0.22),transparent_70%)]" />
         <div className="relative z-10 max-w-4xl">
