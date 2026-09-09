@@ -1,49 +1,20 @@
-import { useEffect, useRef, useState } from "react";
 import { Reveal, TextReveal } from "../lib/motion";
 import { Tag, Paragraphs } from "./ui";
 import { ending, meta } from "../content";
-import { useAmbience } from "./AudioContext";
 
 export default function Ending() {
-  const { triggerScare } = useAmbience();
-  const scareRef = useRef<HTMLElement | null>(null);
-  const [scareVisible, setScareVisible] = useState(false);
-  const scareTriggered = useRef(false);
-
-  useEffect(() => {
-    const target = scareRef.current;
-    if (!target) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting || scareTriggered.current) return;
-        scareTriggered.current = true;
-        setScareVisible(true);
-        triggerScare();
-        window.setTimeout(() => setScareVisible(false), 1100);
-      },
-      { threshold: 0.62 },
-    );
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, [triggerScare]);
-
   return (
     <>
-      <section ref={scareRef} aria-label="Último susto antes dos créditos" className="relative flex min-h-[42vh] items-center justify-center overflow-hidden bg-black px-6 py-24">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(65%_70%_at_50%_50%,rgba(138,30,22,0.16),transparent_72%)]" />
-        <p className="relative z-10 max-w-md text-center font-mono text-[0.62rem] uppercase tracking-[0.35em] text-stone">
-          o último registro antes do arquivo
-        </p>
-        <div className={"jumpscare " + (scareVisible ? "is-visible" : "")} aria-hidden="true">
-          <div className="jumpscare-noise" />
-          <img src="/art/leg-hero.webp" alt="" className="jumpscare-image" />
-          <strong className="jumpscare-boom">BOO!</strong>
-          <span className="jumpscare-caption">você ainda está aí?</span>
-        </div>
-      </section>
-
       <section className="relative flex min-h-screen items-center justify-center bg-black px-6 py-28 text-center">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_50%_at_50%_108%,rgba(138,30,22,0.22),transparent_70%)]" />
+        {/* faint watching leg - stays after jumpscare */}
+        <img
+          src="/art/leg-hero.webp"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 left-1/2 h-[28vh] w-auto -translate-x-1/2 object-contain opacity-[0.04]"
+          style={{ filter: "brightness(0.35) blur(0.8px)" }}
+        />
         <div className="relative z-10 max-w-4xl">
           <Reveal>
             <p className="font-mono text-[0.65rem] uppercase tracking-[0.4em] text-bloodsoft">
@@ -134,6 +105,9 @@ export default function Ending() {
               ))}
               <p className="mt-6 font-mono text-[0.55rem] uppercase tracking-[0.3em] text-stone">
                 {meta.footerLine}
+              </p>
+              <p className="mt-8 font-mono text-[0.48rem] uppercase tracking-[0.3em] text-stone/40">
+                se você ouviu passos atrás de você, não foi o site.
               </p>
             </div>
           </Reveal>

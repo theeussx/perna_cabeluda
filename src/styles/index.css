@@ -243,97 +243,247 @@ h3 {
   .perna-map-dot.is-selected::before { animation: none; }
 }
 
-/* End-of-site scare: brief, contained, and disabled for reduced-motion users. */
-.jumpscare {
-  position: absolute;
+/* ========== JUMPSCARE V2 - DE VERDADE ========== */
+.jumpscare-v2 {
+  position: fixed;
   inset: 0;
-  z-index: 20;
+  z-index: 9999;
   display: grid;
   place-items: center;
-  overflow: hidden;
-  background: #050303;
+  background: #020000;
   opacity: 0;
   pointer-events: none;
-  transform: scale(1.12);
-  transition: opacity 80ms linear, transform 900ms cubic-bezier(.2,.7,.2,1);
+  visibility: hidden;
+  overflow: hidden;
+  transform: scale(1.18);
 }
-.jumpscare.is-visible { opacity: 1; transform: scale(1); }
-.jumpscare.is-visible::before {
-  content: "";
+.jumpscare-v2.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transform: scale(1);
+  transition: transform 90ms cubic-bezier(.1,.9,.2,1), opacity 60ms linear;
+}
+
+/* white flash at impact */
+.jumpscare-v2-flash {
   position: absolute;
   inset: 0;
-  z-index: 4;
-  background: #efe9d8;
+  z-index: 10;
+  background: #fff;
   opacity: 0;
-  animation: scare-flash 260ms ease-out both;
+  pointer-events: none;
 }
-.jumpscare-image {
+.jumpscare-v2.is-active .jumpscare-v2-flash {
+  animation: jsv2-flash 140ms ease-out both;
+}
+@keyframes jsv2-flash {
+  0% { opacity: 1; }
+  18% { opacity: 0.92; }
+  100% { opacity: 0; }
+}
+
+/* chromatic aberration layers */
+.jumpscare-v2-chromatic {
   position: absolute;
-  height: 125%;
-  width: auto;
-  max-width: none;
-  object-fit: contain;
-  filter: contrast(1.35) brightness(0.48) saturate(0.75) sepia(0.18);
-  animation: scare-shake 55ms steps(2, end) infinite;
+  inset: -10%;
+  z-index: 1;
+  mix-blend-mode: screen;
+  opacity: 0.9;
 }
-.jumpscare-noise {
+.jumpscare-v2-leg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 68%;
+}
+.jumpscare-v2-leg.leg-r {
+  transform: translate(-6px, 1px);
+  filter: hue-rotate(-30deg) saturate(1.6) brightness(0.9) contrast(1.4);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+.jumpscare-v2-leg.leg-g {
+  transform: translate(0, 0);
+  filter: brightness(0.55) contrast(1.5) saturate(0.2);
+  opacity: 0.9;
+}
+.jumpscare-v2-leg.leg-b {
+  transform: translate(6px, -1px);
+  filter: hue-rotate(160deg) saturate(1.8) brightness(0.9) contrast(1.4);
+  mix-blend-mode: screen;
+  opacity: 0.85;
+}
+.jumpscare-v2.is-active .jumpscare-v2-chromatic {
+  animation: jsv2-chroma 120ms steps(2, end) infinite;
+}
+@keyframes jsv2-chroma {
+  0% { transform: translate(0,0); }
+  20% { transform: translate(-3px,2px); }
+  40% { transform: translate(3px,-1px); }
+  60% { transform: translate(-2px,-2px); }
+  80% { transform: translate(2px,1px); }
+}
+
+/* main image */
+.jumpscare-v2-main {
+  position: relative;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center 72%;
+  filter: contrast(1.65) brightness(0.62) saturate(0.6) sepia(0.08);
+  transform-origin: center 78%;
+}
+.jumpscare-v2.is-active .jumpscare-v2-main {
+  animation: jsv2-zoom 850ms cubic-bezier(.1,.8,.2,1) both, jsv2-shake 48ms steps(2, end) infinite;
+}
+@keyframes jsv2-zoom {
+  0% { transform: scale(1.25); }
+  12% { transform: scale(0.92); }
+  100% { transform: scale(1.55); }
+}
+@keyframes jsv2-shake {
+  0% { transform: translate(0,0) scale(1.25); }
+  15% { transform: translate(-14px, 6px) scale(1.26); }
+  30% { transform: translate(12px, -5px) scale(1.24); }
+  45% { transform: translate(-8px, -8px) scale(1.27); }
+  60% { transform: translate(10px, 8px) scale(1.25); }
+  75% { transform: translate(-5px, 4px) scale(1.28); }
+  90% { transform: translate(6px, -3px) scale(1.24); }
+}
+
+/* fallback hero */
+.jumpscare-v2-fallback {
   position: absolute;
   inset: 0;
   z-index: 1;
-  opacity: 0.4;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)' opacity='.55'/%3E%3C/svg%3E");
-  mix-blend-mode: screen;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.25;
+  filter: brightness(0.3);
 }
-.jumpscare::after {
-  content: "";
+
+/* noise */
+.jumpscare-v2-noise {
+  position: absolute;
+  inset: -20%;
+  z-index: 3;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.85'/%3E%3C/svg%3E");
+  animation: jsv2-noise 60ms steps(2) infinite;
+}
+@keyframes jsv2-noise {
+  0% { transform: translate(0,0); }
+  100% { transform: translate(-1.5%, 1.2%); }
+}
+.jumpscare-v2-scan {
   position: absolute;
   inset: 0;
-  z-index: 2;
-  background: radial-gradient(circle at center, transparent 0 18%, rgba(0, 0, 0, 0.78) 76%);
+  z-index: 4;
+  opacity: 0.18;
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(255,255,255,0.12) 2px 3px);
+  mix-blend-mode: overlay;
 }
-.jumpscare-caption {
-  position: relative;
-  z-index: 3;
-  margin-top: 28vh;
-  color: #efe9d8;
-  font: 0.62rem/1.2 "IBM Plex Mono", ui-monospace, monospace;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  text-shadow: 0 0 14px #000;
+.jumpscare-v2-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: radial-gradient(ellipse at center, transparent 28%, rgba(0,0,0,0.65) 72%, black 92%);
 }
-.jumpscare-boom {
-  position: relative;
-  z-index: 3;
-  margin-top: -8vh;
-  color: #efe9d8;
+.jumpscare-v2-blood {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  opacity: 0.22;
+  background: radial-gradient(90% 70% at 50% 100%, rgba(138,30,22,0.55), transparent 60%),
+              radial-gradient(50% 40% at 20% 20%, rgba(80,10,10,0.35), transparent 60%);
+  mix-blend-mode: multiply;
+}
+
+/* text */
+.jumpscare-v2-text-wrap {
+  position: absolute;
+  z-index: 7;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  padding-bottom: 10vh;
+}
+.jumpscare-v2-title {
   font-family: "Libre Baskerville", Georgia, serif;
-  font-size: clamp(4rem, 16vw, 13rem);
-  font-weight: 700;
-  letter-spacing: -0.08em;
-  line-height: 0.8;
+  font-weight: 900;
+  font-size: clamp(3.5rem, 18vw, 13rem);
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+  color: #fff;
+  text-shadow: 0 4px 0 #8a1e16, 0 0 22px rgba(138,30,22,1), 0 0 50px rgba(0,0,0,1), 4px 0 0 rgba(255,0,0,0.8), -4px 0 0 rgba(0,255,255,0.6);
+  transform: rotate(-2deg) scale(1.1);
   opacity: 0;
-  text-shadow: 0 5px 0 #8a1e16, 0 0 35px rgba(138, 30, 22, 0.9);
-  transform: scale(1.7) rotate(-4deg);
 }
-.jumpscare.is-visible .jumpscare-boom {
-  animation: scare-boom 900ms cubic-bezier(.1,.8,.2,1) 70ms both;
+.jumpscare-v2.is-active .jumpscare-v2-title {
+  animation: jsv2-title 700ms cubic-bezier(.1,.8,.2,1) 60ms both;
 }
-@keyframes scare-flash {
-  0% { opacity: 0.88; }
-  100% { opacity: 0; }
+@keyframes jsv2-title {
+  0% { opacity: 0; transform: rotate(-8deg) scale(2.1); filter: blur(8px); }
+  10% { opacity: 1; transform: rotate(3deg) scale(0.88); filter: blur(0); }
+  22% { opacity: 1; transform: rotate(-1deg) scale(1.12); }
+  100% { opacity: 0; transform: rotate(0) scale(1); filter: blur(1px); }
 }
-@keyframes scare-boom {
-  0% { opacity: 0; transform: scale(1.7) rotate(-4deg); }
-  8% { opacity: 1; transform: scale(0.88) rotate(2deg); }
-  25% { opacity: 1; transform: scale(1.1) rotate(-1deg); }
-  100% { opacity: 0; transform: scale(1) rotate(0); }
+.jumpscare-v2-sub {
+  margin-top: 1.2rem;
+  font: 700 0.72rem/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: #efe9d8;
+  background: #8a1e16;
+  padding: 0.35em 0.9em;
+  opacity: 0;
+  transform: translateY(12px);
 }
-@keyframes scare-shake {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(-7px, 3px) scale(1.02); }
-  50% { transform: translate(5px, -2px) scale(0.99); }
-  75% { transform: translate(2px, 5px) scale(1.01); }
+.jumpscare-v2.is-active .jumpscare-v2-sub {
+  animation: jsv2-sub 500ms ease-out 140ms both;
 }
+@keyframes jsv2-sub {
+  0% { opacity: 0; transform: translateY(18px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.jumpscare-v2-meta {
+  margin-top: 0.8rem;
+  font: 0.52rem/1 "IBM Plex Mono", monospace;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(239,233,216,0.55);
+  opacity: 0;
+}
+.jumpscare-v2.is-active .jumpscare-v2-meta {
+  animation: jsv2-sub 400ms ease-out 220ms both;
+}
+
+/* page shake during scare */
+@keyframes page-shake {
+  0%,100% { transform: translate(0,0); }
+  10% { transform: translate(-4px,2px); }
+  20% { transform: translate(5px,-2px); }
+  30% { transform: translate(-3px,3px); }
+  40% { transform: translate(3px,-1px); }
+  50% { transform: translate(-2px,2px); }
+  60% { transform: translate(4px,-3px); }
+  70% { transform: translate(-4px,1px); }
+  80% { transform: translate(2px,-2px); }
+}
+html.scare-shaking {
+  animation: page-shake 90ms steps(2,end) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .jumpscare { display: none; }
+  .jumpscare-v2 { display: none !important; }
 }

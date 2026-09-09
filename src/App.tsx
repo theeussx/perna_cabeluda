@@ -21,6 +21,7 @@ import Cinema from "./components/Cinema";
 import Verdict from "./components/Verdict";
 import YouAreNow from "./components/YouAreNow";
 import Finale from "./components/Finale";
+import Jumpscare from "./components/Jumpscare";
 import Ending from "./components/Ending";
 
 function useLenis() {
@@ -81,6 +82,7 @@ function Scroll() {
       <Verdict />
       <YouAreNow />
       <Finale />
+      <Jumpscare />
       <Ending />
     </main>
   );
