@@ -11,10 +11,11 @@ import {
 interface AudioCtx {
   enabled: boolean;
   toggle: () => void;
+  triggerPrelude: () => void;
   triggerScare: () => void;
 }
 
-const Ctx = createContext<AudioCtx>({ enabled: false, toggle: () => {}, triggerScare: () => {} });
+const Ctx = createContext<AudioCtx>({ enabled: false, toggle: () => {}, triggerPrelude: () => {}, triggerScare: () => {} });
 
 export function useAmbience() {
   return useContext(Ctx);
@@ -292,6 +293,73 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     } catch {}
   }, [enabled, ensure]);
 
+  const triggerPrelude = useCallback(() => {
+    const a = audioRef.current || ensure();
+    if (!a) return;
+
+    const ctx = a.ctx;
+    void ctx.resume();
+    const now = ctx.currentTime;
+    const whisperAt = now + 3.65;
+
+    // Keep the soundtrack present while the leg approaches, then make its
+    // disappearance feel unnatural instead of simply toggling audio off.
+    try {
+      a.soundtrack.volume = 0.32;
+      window.setTimeout(() => {
+        if (audioRef.current) audioRef.current.soundtrack.volume = 0.012;
+      }, 3600);
+    } catch {}
+
+    // A close, breathy whisper made from filtered noise and unstable tones.
+    // It is intentionally lo-fi and slightly overdriven, like a damaged tape.
+    const whisperBus = ctx.createGain();
+    const whisperFilter = ctx.createBiquadFilter();
+    const whisperDrive = ctx.createWaveShaper();
+    whisperFilter.type = "bandpass";
+    whisperFilter.frequency.value = 1450;
+    whisperFilter.Q.value = 0.65;
+    whisperDrive.curve = makeDistortionCurve(55);
+    whisperDrive.oversample = "2x";
+    whisperBus.gain.setValueAtTime(0, whisperAt);
+    whisperBus.gain.linearRampToValueAtTime(0.11, whisperAt + 0.22);
+    whisperBus.gain.linearRampToValueAtTime(0.065, whisperAt + 1.55);
+    whisperBus.gain.exponentialRampToValueAtTime(0.001, whisperAt + 2.05);
+    whisperBus.connect(whisperFilter);
+    whisperFilter.connect(whisperDrive);
+    whisperDrive.connect(a.master);
+
+    const breath = ctx.createBufferSource();
+    breath.buffer = makeNoiseBuffer(ctx, 2.4);
+    breath.connect(whisperBus);
+    breath.start(whisperAt);
+    breath.stop(whisperAt + 2.2);
+
+    [210, 192, 174].forEach((frequency, index) => {
+      const voice = ctx.createOscillator();
+      const voiceGain = ctx.createGain();
+      const start = whisperAt + index * 0.58;
+      voice.type = "sine";
+      voice.frequency.setValueAtTime(frequency, start);
+      voice.frequency.linearRampToValueAtTime(frequency - 55, start + 0.44);
+      voiceGain.gain.setValueAtTime(0, start);
+      voiceGain.gain.linearRampToValueAtTime(0.075, start + 0.06);
+      voiceGain.gain.exponentialRampToValueAtTime(0.001, start + 0.48);
+      voice.connect(voiceGain);
+      voiceGain.connect(whisperBus);
+      voice.start(start);
+      voice.stop(start + 0.52);
+    });
+
+    // Hold the blackout as a genuinely uncomfortable silence before the boom.
+    window.setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.soundtrack.volume = 0;
+        audioRef.current.droneGain.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.025);
+      }
+    }, 5850);
+  }, [ensure]);
+
   useEffect(() => {
     reduceRef.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
@@ -306,5 +374,5 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  return <Ctx.Provider value={{ enabled, toggle, triggerScare }}>{children}</Ctx.Provider>;
+  return <Ctx.Provider value={{ enabled, toggle, triggerPrelude, triggerScare }}>{children}</Ctx.Provider>;
 }

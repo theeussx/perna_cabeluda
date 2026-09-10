@@ -4,7 +4,7 @@ import { useAmbience } from "./AudioContext";
 type Phase = "idle" | "tension" | "whisper" | "blackout" | "scare" | "after" | "done";
 
 export default function Jumpscare() {
-  const { triggerScare } = useAmbience();
+  const { triggerPrelude, triggerScare } = useAmbience();
   const containerRef = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<Phase>("idle");
   const hasTriggered = useRef(false);
@@ -22,6 +22,10 @@ export default function Jumpscare() {
   const triggerSequence = useCallback(() => {
     if (hasTriggered.current) return;
     hasTriggered.current = true;
+
+    // Start the audio choreography before the visual sequence: soundtrack,
+    // close whisper, then the unnatural silence that precedes the hit.
+    triggerPrelude();
 
     // Lock scroll during the whole sequence for tension
     document.documentElement.style.overflow = "hidden";
@@ -133,7 +137,7 @@ export default function Jumpscare() {
         );
       }, 3800 + 2200 + 700)
     );
-  }, [triggerScare]);
+  }, [triggerPrelude, triggerScare]);
 
   useEffect(() => {
     const el = containerRef.current;
