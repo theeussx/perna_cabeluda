@@ -46,6 +46,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     ctx: AudioContext;
     master: GainNode;
     soundtrack: HTMLAudioElement;
+    scream: HTMLAudioElement;
     droneGain: GainNode;
   } | null>(null);
   const reduceRef = useRef(false);
@@ -110,7 +111,11 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     soundtrack.preload = "auto";
     soundtrack.volume = 0.32;
 
-    audioRef.current = { ctx, master, soundtrack, droneGain: droneG };
+    const scream = new Audio("/audio/jumpscare-scream.wav");
+    scream.preload = "auto";
+    scream.volume = 1;
+
+    audioRef.current = { ctx, master, soundtrack, scream, droneGain: droneG };
     return audioRef.current;
   }, []);
 
@@ -148,6 +153,20 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     const ctx = a.ctx;
     void ctx.resume();
     const now = ctx.currentTime;
+
+    // Reinforce the synthetic hit with a real, short human scream.
+    try {
+      a.scream.pause();
+      a.scream.currentTime = 0;
+      a.scream.volume = 1;
+      void a.scream.play().catch(() => {});
+      window.setTimeout(() => {
+        if (audioRef.current) {
+          audioRef.current.scream.pause();
+          audioRef.current.scream.currentTime = 0;
+        }
+      }, 1250);
+    } catch {}
 
     // DUCK the ambient - sudden silence before boom makes it scarier
     try {
