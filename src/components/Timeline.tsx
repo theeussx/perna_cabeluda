@@ -35,8 +35,8 @@ export default function Timeline() {
                   />
                   <div className="flex-1 pl-10 md:pl-0">
                     <Tag className="text-bloodsoft">{it.tag}</Tag>
-                    <p className="mt-2 font-serif text-3xl text-paper sm:text-4xl">{it.y}</p>
-                    <p className="mt-3 text-[0.95rem] leading-relaxed text-[#c6bda2]">{it.t}</p>
+                    <p className="mt-2 font-serif text-4xl text-paper sm:text-5xl">{it.y}</p>
+                    <p className="mt-3 text-[1.1rem] leading-relaxed text-[#c6bda2]">{it.t}</p>
                   </div>
                 </div>
               </Reveal>

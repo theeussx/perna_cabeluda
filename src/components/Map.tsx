@@ -113,7 +113,7 @@ export default function MapSection() {
       <div className="mx-auto max-w-6xl">
         <ChapterHeader no="11" kicker="mapa do Recife" title={renderTitle(mapSection.heading)} />
         <Reveal>
-          <Paragraphs text={mapSection.lead} className="max-w-3xl text-lg text-bone/85" />
+          <Paragraphs text={mapSection.lead} className="max-w-3xl text-xl text-bone/90" />
         </Reveal>
 
         <div className="mt-12 grid gap-5 lg:grid-cols-[minmax(0,1.5fr)_minmax(290px,0.7fr)]">
@@ -121,23 +121,23 @@ export default function MapSection() {
             <div className="overflow-hidden border border-bone/20 bg-[#11100c] shadow-[0_24px_80px_rgba(0,0,0,0.24)]">
               <div className="flex items-center justify-between border-b border-bone/15 px-5 py-4 sm:px-6">
                 <div className="flex items-center gap-3">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-bloodsoft/50 font-serif text-sm text-bloodsoft">11</span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-bloodsoft/50 font-serif text-base text-bloodsoft">11</span>
                   <div>
-                    <p className="font-mono text-[0.55rem] uppercase tracking-[0.25em] text-bone/60">Cartografia real</p>
-                    <p className="mt-1 font-serif text-base text-paper">Recife e Região Metropolitana</p>
+                    <p className="font-mono text-[0.72rem] uppercase tracking-[0.25em] text-bone/80">Cartografia real</p>
+                    <p className="mt-1 font-serif text-lg text-paper">Recife e Região Metropolitana</p>
                   </div>
                 </div>
-                <span className="hidden font-mono text-[0.52rem] uppercase tracking-[0.18em] text-stone sm:block">ruas e limites · escala atual</span>
+                <span className="hidden font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone sm:block">ruas e limites · escala atual</span>
               </div>
 
               <div ref={mapElement} className="real-map relative h-[430px] w-full sm:h-[520px]" aria-label="Mapa interativo do Recife e Região Metropolitana" />
 
               <div className="flex flex-wrap items-center justify-between gap-3 border-t border-bone/15 px-5 py-4 sm:px-6">
-                <div className="flex items-center gap-4 font-mono text-[0.52rem] uppercase tracking-[0.14em] text-stone">
+                <div className="flex items-center gap-4 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-stone">
                   <span className="flex items-center gap-2"><i className="h-2.5 w-2.5 rounded-full bg-bloodsoft shadow-[0_0_9px_rgba(138,30,22,.8)]" /> local selecionado</span>
                   <span className="flex items-center gap-2"><i className="h-px w-5 border-t border-dashed border-bloodsoft" /> percurso cultural</span>
                 </div>
-                <span className="font-mono text-[0.5rem] uppercase tracking-[0.16em] text-stone/75">{mapSection.mapNote}</span>
+                <span className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-stone">{mapSection.mapNote}</span>
               </div>
             </div>
           </Reveal>
@@ -145,16 +145,16 @@ export default function MapSection() {
           <Reveal>
             <div className="flex h-full min-h-[390px] flex-col border border-bone/20 bg-[#17150f] p-6 sm:p-8">
               <div className="flex items-center justify-between border-b border-bone/15 pb-4">
-                <span className="font-mono text-[0.58rem] uppercase tracking-[0.2em] text-bloodsoft">Fragmento selecionado</span>
-                <span className="font-mono text-[0.55rem] uppercase tracking-[0.16em] text-stone">{String(selectedIndex + 1).padStart(2, "0")} / {String(points.length).padStart(2, "0")}</span>
+                <span className="font-mono text-[0.75rem] uppercase tracking-[0.2em] text-bloodsoft">Fragmento selecionado</span>
+                <span className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-stone">{String(selectedIndex + 1).padStart(2, "0")} / {String(points.length).padStart(2, "0")}</span>
               </div>
 
               <AnimatePresence mode="wait">
                 <motion.div key={sel.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.28 }} className="flex flex-1 flex-col pt-7">
-                  <div className="flex items-center gap-3"><Tag className="text-bloodsoft">{sel.tag}</Tag><span className="font-mono text-[0.55rem] uppercase tracking-[0.2em] text-stone">ponto de memória</span></div>
-                  <h3 className="mt-5 font-serif text-3xl leading-tight text-paper">{sel.name}</h3>
-                  <p className="mt-5 text-[0.95rem] leading-[1.85] text-[#c6bda2]">{sel.frag}</p>
-                  <div className="mt-auto pt-10"><div className="mb-4 h-px w-12 bg-bloodsoft/80" /><p className="max-w-xs font-mono text-[0.55rem] uppercase leading-relaxed tracking-[0.12em] text-stone">Mapa baseado em cartografia real. O registro cultural não prova ocorrências sobrenaturais.</p></div>
+                  <div className="flex items-center gap-3"><Tag className="text-bloodsoft">{sel.tag}</Tag><span className="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-stone">ponto de memória</span></div>
+                  <h3 className="mt-5 font-serif text-4xl leading-tight text-paper">{sel.name}</h3>
+                  <p className="mt-5 text-[1.1rem] leading-[1.7] text-[#c6bda2]">{sel.frag}</p>
+                  <div className="mt-auto pt-10"><div className="mb-4 h-px w-12 bg-bloodsoft/80" /><p className="max-w-xs font-mono text-[0.72rem] uppercase leading-relaxed tracking-[0.12em] text-stone">Mapa baseado em cartografia real. O registro cultural não prova ocorrências sobrenaturais.</p></div>
                 </motion.div>
               </AnimatePresence>
             </div>

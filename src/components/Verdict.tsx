@@ -44,7 +44,7 @@ export default function Verdict() {
                 <button
                   key={b}
                   onClick={() => pick(b)}
-                  className="w-full border border-bone/40 px-8 py-4 font-mono text-sm uppercase tracking-[0.2em] text-bone transition-colors hover:bg-bone hover:text-black sm:w-auto"
+                  className="w-full border border-bone/50 px-9 py-5 font-mono text-base uppercase tracking-[0.2em] text-bone sm:text-lg transition-colors hover:bg-bone hover:text-black sm:w-auto"
                 >
                   {b}
                 </button>
@@ -61,7 +61,7 @@ export default function Verdict() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.9 }}
-                    className="font-serif text-3xl leading-snug text-paper sm:text-4xl"
+                    className="font-serif text-4xl leading-snug text-paper sm:text-5xl"
                   >
                     {verdict.afterA}
                   </motion.p>
@@ -72,7 +72,7 @@ export default function Verdict() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}
-                    className="mx-auto max-w-2xl font-serif text-2xl leading-snug text-bone sm:text-3xl"
+                    className="mx-auto max-w-2xl font-serif text-3xl leading-snug text-bone sm:text-4xl"
                   >
                     {verdict.afterB}
                   </motion.p>
@@ -84,7 +84,7 @@ export default function Verdict() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1.2 }}
                   >
-                    <p className="mx-auto max-w-xl text-base leading-relaxed text-[#c6bda2]">
+                    <p className="mx-auto max-w-2xl text-xl leading-relaxed text-[#c6bda2]">
                       {verdict.afterC_prefix}{" "}
                       <span className="italic text-paper">“{chosen}”</span>. {verdict.afterC}
                     </p>
@@ -93,7 +93,7 @@ export default function Verdict() {
                         setStep("ask");
                         setChosen(null);
                       }}
-                      className="mt-8 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-stone underline-offset-4 hover:text-bone hover:underline"
+                      className="mt-8 font-mono text-[0.8rem] uppercase tracking-[0.2em] text-stone underline-offset-4 hover:text-bone hover:underline"
                     >
                       {verdict.retry}
                     </button>

@@ -8,7 +8,7 @@ export default function Culture() {
       <div className="mx-auto max-w-6xl">
         <ChapterHeader no="13" kicker="cultura popular" title={renderTitle(culture.heading)} />
         <Reveal>
-          <Paragraphs text={culture.lead} className="max-w-3xl text-lg text-bone/85" />
+          <Paragraphs text={culture.lead} className="max-w-3xl text-xl text-bone/90" />
         </Reveal>
 
         <div className="mt-12 grid gap-px bg-bone/10 sm:grid-cols-2 lg:grid-cols-3">
@@ -19,19 +19,19 @@ export default function Culture() {
                   <span className="font-serif text-3xl text-bloodsoft" aria-hidden="true">
                     {c.g}
                   </span>
-                  <span className="font-mono text-[0.52rem] uppercase tracking-[0.18em] text-stone">
+                  <span className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
                 <Tag className="mt-5 text-bone">{c.m}</Tag>
-                <h3 className="mt-2 font-serif text-xl text-paper sm:text-2xl">{c.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#c6bda2]">{c.d}</p>
+                <h3 className="mt-2 font-serif text-2xl text-paper sm:text-3xl">{c.t}</h3>
+                <p className="mt-3 text-[1.05rem] leading-relaxed text-[#c6bda2]">{c.d}</p>
               </article>
             </Reveal>
           ))}
           <Reveal delay={0.1}>
             <div className="flex h-full flex-col justify-center border-t border-bone/20 bg-blood/[0.05] p-6">
-              <p className="font-serif text-lg italic leading-snug text-paper">{culture.quote}</p>
+              <p className="font-serif text-2xl italic leading-snug text-paper">{culture.quote}</p>
             </div>
           </Reveal>
         </div>

@@ -9,9 +9,9 @@ module.exports = {
         panel: "#15140F",
         bone: "#D6C7A1",
         paper: "#EFE9D8",
-        stone: "#5C5C50",
+        stone: "#A39C86",
         blood: "#8A1E16",
-        bloodsoft: "#A63A2B",
+        bloodsoft: "#C4503F",
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', '"Libre Baskerville"', "Georgia", "serif"],

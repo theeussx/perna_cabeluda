@@ -14,7 +14,7 @@ export default function Entrance() {
           initial={{ opacity: 0, letterSpacing: "0.1em" }}
           animate={{ opacity: 1, letterSpacing: "0.5em" }}
           transition={{ duration: 2.2, ease: "easeOut", delay: 0.4 }}
-          className="font-mono text-[0.6rem] uppercase text-stone"
+          className="font-mono text-[0.7rem] uppercase text-stone sm:text-[0.9rem]"
         >
           {entrance.preKicker}
         </motion.p>
@@ -42,7 +42,7 @@ export default function Entrance() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.4, delay: 3.2 }}
-          className="mx-auto mt-14 max-w-md font-serif text-xl italic text-bone/90 sm:text-2xl"
+          className="mx-auto mt-14 max-w-lg font-serif text-2xl italic text-bone sm:text-3xl"
         >
           {entrance.question}
         </motion.p>
@@ -54,7 +54,7 @@ export default function Entrance() {
         transition={{ delay: 4 }}
         className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-center"
       >
-        <p className="flicker font-mono text-[0.62rem] tracking-[0.4em] uppercase text-stone">
+        <p className="flicker font-mono text-[0.8rem] tracking-[0.35em] uppercase text-stone">
           {entrance.scrollHint}
         </p>
         <div className="mx-auto mt-3 h-12 w-px bg-gradient-to-b from-bone/70 to-transparent" />
