@@ -17,11 +17,11 @@ export default function Travel() {
           title={renderTitle(travel.heading)}
         />
         <Reveal>
-          <Paragraphs text={travel.lead} className="max-w-2xl text-lg text-bone/85" />
+          <Paragraphs text={travel.lead} className="max-w-2xl text-xl text-bone/90" />
         </Reveal>
 
         <Reveal>
-          <div className="mt-6 flex flex-wrap gap-4 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-stone">
+          <div className="mt-6 flex flex-wrap gap-4 font-mono text-[0.78rem] uppercase tracking-[0.2em] text-stone">
             <span className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-bone/70" /> {travel.legendOld}
             </span>
@@ -38,12 +38,12 @@ export default function Travel() {
                 onClick={() => setActiveId(s.id)}
                 aria-pressed={activeId === s.id}
                 className={
-                  "relative px-4 py-3 font-mono text-[0.66rem] uppercase tracking-[0.16em] transition-colors sm:text-[0.72rem] " +
+                  "relative px-4 py-3 font-mono text-[0.8rem] uppercase tracking-[0.16em] transition-colors sm:text-[0.88rem] " +
                   (activeId === s.id
                     ? s.era === "1970"
                       ? "bg-bone text-black"
                       : "bg-paper text-black"
-                    : "border border-bone/15 text-bone/70 hover:border-bone/40 hover:text-bone")
+                    : "border border-bone/15 text-bone/85 hover:border-bone/40 hover:text-bone")
                 }
               >
                 {s.label}
@@ -82,12 +82,12 @@ export default function Travel() {
                   <Tag className={active.era === "1970" ? "text-bone" : "text-paper"}>
                     {active.era === "1970" ? "meio · anos 1970" : "meio · hoje"}
                   </Tag>
-                  <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-stone">
+                  <span className="font-mono text-[0.78rem] uppercase tracking-[0.2em] text-stone">
                     {String(travel.stages.indexOf(active) + 1).padStart(2, "0")} / {travel.stages.length}
                   </span>
                 </div>
-                <h3 className="mt-3 font-serif text-2xl text-paper sm:text-3xl">{active.title}</h3>
-                <p className="mt-3 max-w-2xl leading-relaxed text-[#c6bda2]">{active.body}</p>
+                <h3 className="mt-3 font-serif text-3xl text-paper sm:text-4xl">{active.title}</h3>
+                <p className="mt-3 max-w-2xl text-[1.15rem] leading-relaxed text-[#c6bda2]">{active.body}</p>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -96,7 +96,7 @@ export default function Travel() {
         <Reveal>
           <div className="mt-16 text-center">
             {travel.outro.map((o) => (
-              <p key={o} className="font-serif text-2xl italic text-bone sm:text-3xl">
+              <p key={o} className="font-serif text-3xl italic text-bone sm:text-4xl">
                 {o}
               </p>
             ))}

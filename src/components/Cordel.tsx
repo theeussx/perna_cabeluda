@@ -8,7 +8,7 @@ export default function Cordel() {
       <div className="mx-auto max-w-6xl">
         <ChapterHeader no="08" kicker="cordel" title={renderTitle(cordel.heading)} />
         <Reveal>
-          <Paragraphs text={cordel.lead} className="max-w-2xl text-lg text-bone/85" />
+          <Paragraphs text={cordel.lead} className="max-w-2xl text-xl text-bone/90" />
         </Reveal>
 
         <div className="mt-12 grid items-start gap-10 lg:grid-cols-2">
@@ -24,7 +24,7 @@ export default function Cordel() {
                     decoding="async"
                   />
                 </div>
-                <figcaption className="mt-3 text-center font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[#6f5a33]">
+                <figcaption className="mt-3 text-center font-mono text-[0.78rem] uppercase tracking-[0.2em] text-[#5a4527]">
                   {cordel.figureCaption}
                 </figcaption>
               </div>
@@ -41,12 +41,12 @@ export default function Cordel() {
               <Reveal key={v.t}>
                 <div className="border-b border-bone/10 pb-5">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-[0.55rem] uppercase tracking-[0.2em] text-bloodsoft">
+                    <span className="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-bloodsoft">
                       estrofe {v.t}
                     </span>
                     <span className="h-px flex-1 bg-bone/10" />
                   </div>
-                  <div className="mt-3 space-y-1 font-serif text-[1.15rem] italic leading-relaxed text-bone/90 sm:text-[1.3rem]">
+                  <div className="mt-3 space-y-1 font-serif text-[1.5rem] italic leading-relaxed text-bone sm:text-[1.75rem]">
                     {v.lines.map((l, i) => (
                       <p key={i} className="indent-2">
                         {l}
@@ -57,7 +57,7 @@ export default function Cordel() {
               </Reveal>
             ))}
             <Reveal>
-              <Paragraphs text={cordel.disclaimer} className="text-sm text-stone" />
+              <Paragraphs text={cordel.disclaimer} className="text-[1rem] text-stone" />
             </Reveal>
           </div>
         </div>

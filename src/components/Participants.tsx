@@ -25,7 +25,7 @@ export default function Participants() {
         />
 
         <Reveal>
-          <p className="mx-auto mt-10 max-w-2xl text-center text-lg leading-relaxed text-bone/85">
+          <p className="mx-auto mt-10 max-w-2xl text-center text-xl leading-relaxed text-bone/90">
             {participants.lead[0]}
           </p>
         </Reveal>
@@ -35,15 +35,15 @@ export default function Participants() {
             <Reveal key={p.name + i} delay={(i % 4) * 0.06}>
               <article className="group relative h-full bg-ink p-7 transition-colors hover:bg-[#0e0d09]">
                 <div className="flex items-start justify-between">
-                  <div className="flex h-14 w-14 items-center justify-center border border-bone/20 bg-coal font-serif text-xl text-bloodsoft transition-colors group-hover:border-bloodsoft/50">
+                  <div className="flex h-14 w-14 items-center justify-center border border-bone/20 bg-coal font-serif text-2xl text-bloodsoft transition-colors group-hover:border-bloodsoft/50">
                     {initials(p.name)}
                   </div>
-                  <span className="font-mono text-[0.52rem] uppercase tracking-[0.18em] text-stone">
+                  <span className="font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
 
-                <h3 className="mt-6 font-serif text-2xl leading-tight text-paper">{p.name}</h3>
+                <h3 className="mt-6 font-serif text-3xl leading-tight text-paper">{p.name}</h3>
                 <Tag className="mt-4 text-bone">{p.role}</Tag>
 
                 <span
@@ -56,7 +56,7 @@ export default function Participants() {
         </div>
 
         <Reveal>
-          <p className="mx-auto mt-16 max-w-xl text-center font-serif text-lg italic leading-relaxed text-bone">
+          <p className="mx-auto mt-16 max-w-xl text-center font-serif text-2xl italic leading-relaxed text-bone">
             {participants.outro}
           </p>
         </Reveal>

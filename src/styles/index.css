@@ -1,3 +1,22 @@
+/* ------------------------------------------------------------------
+   Fontes servidas localmente (@fontsource) — nao dependem do Google Fonts
+   nem de internet no dia da apresentacao. Apenas os pesos usados.
+   ------------------------------------------------------------------ */
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/cormorant-garamond/latin-700.css";
+@import "@fontsource/cormorant-garamond/latin-500-italic.css";
+@import "@fontsource/cormorant-garamond/latin-600-italic.css";
+@import "@fontsource/libre-baskerville/latin-400.css";
+@import "@fontsource/libre-baskerville/latin-700.css";
+@import "@fontsource/libre-baskerville/latin-400-italic.css";
+@import "@fontsource/inter/latin-400.css";
+@import "@fontsource/inter/latin-500.css";
+@import "@fontsource/inter/latin-600.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+@import "@fontsource/ibm-plex-mono/latin-600.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,12 +28,29 @@
   --panel: #15140f;
   --bone: #d6c7a1;
   --paper: #efe9d8;
-  --stone: #5c5c50;
+  /* "stone" era #5c5c50 (contraste 2.9:1 no preto — sumia no projetor).
+     Agora #a39c86 (7.3:1): continua discreto, mas legivel de longe. */
+  --stone: #a39c86;
   --blood: #8a1e16;
+  /* Tamanho-base da pagina. Tudo em rem escala a partir daqui.
+     Projetor: 18px em telas >= 1280px, 19px em >= 1600px. */
+  --base-font: 17px;
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --base-font: 18px;
+  }
+}
+@media (min-width: 1600px) {
+  :root {
+    --base-font: 19px;
+  }
 }
 
 html {
   background: var(--ink);
+  font-size: var(--base-font);
 }
 
 html.lenis,
@@ -33,7 +69,8 @@ body {
   background: var(--ink);
   color: var(--paper);
   font-family: "Inter", system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
@@ -45,11 +82,11 @@ body {
   inset: 0;
   z-index: 60;
   mix-blend-mode: overlay;
-  opacity: 0.5;
+  opacity: 0.32;
 }
 @media (min-width: 768px) {
   #grain {
-    opacity: 0.34;
+    opacity: 0.2;
   }
 }
 
@@ -69,6 +106,21 @@ h3 {
   font-family: "Libre Baskerville", "Cormorant Garamond", Georgia, serif;
   font-weight: 400;
   letter-spacing: 0.01em;
+  text-wrap: balance;
+}
+
+/* Pesos padrao por familia (em @layer base para que utilitarios como
+   font-semibold continuem valendo por cima).
+   - Cormorant Garamond tem tracos muito finos: no projetor ela "some".
+     O peso 500 recupera a presenca sem mudar o desenho.
+   - Mono em caixa alta com tracking largo: 500 evita letras "quebradas". */
+@layer base {
+  .font-serif {
+    font-weight: 500;
+  }
+  .font-mono {
+    font-weight: 500;
+  }
 }
 
 /* ---------- reusable primitives ---------- */
@@ -76,30 +128,33 @@ h3 {
 @layer components {
   .kicker {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.32em;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--bone);
   }
   .eyebrow {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.28em;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
-    color: #8b826f;
+    color: #b5ad95;
   }
   .label-tag {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #8b826f;
-    border: 1px solid rgba(214, 199, 161, 0.22);
-    padding: 0.35em 0.75em;
+    color: #b5ad95;
+    border: 1px solid rgba(214, 199, 161, 0.32);
+    padding: 0.4em 0.8em;
     display: inline-block;
   }
   .lede {
-    color: #b7ad93;
+    color: #c6bda2;
   }
   .display-line {
     font-family: "Cormorant Garamond", Georgia, serif;
@@ -185,9 +240,10 @@ h3 {
   margin: 18px !important;
 }
 .real-map .leaflet-control-zoom a {
-  width: 30px !important;
-  height: 30px !important;
-  line-height: 28px !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 34px !important;
+  font-size: 20px !important;
   border: 0 !important;
   border-bottom: 1px solid rgba(214, 199, 161, 0.15) !important;
   background: rgba(17, 16, 12, 0.9) !important;
@@ -199,8 +255,8 @@ h3 {
 .real-map .leaflet-control-attribution {
   padding: 2px 5px !important;
   background: rgba(8, 8, 8, 0.72) !important;
-  color: rgba(214, 199, 161, 0.6) !important;
-  font: 9px/1.4 "IBM Plex Mono", ui-monospace, monospace !important;
+  color: rgba(214, 199, 161, 0.8) !important;
+  font: 11px/1.4 "IBM Plex Mono", ui-monospace, monospace !important;
 }
 .real-map .leaflet-control-attribution a { color: rgba(214, 199, 161, 0.8) !important; }
 .perna-map-marker { background: transparent; border: 0; }
@@ -232,11 +288,11 @@ h3 {
 .perna-map-tooltip {
   border: 1px solid rgba(214, 199, 161, 0.28) !important;
   border-radius: 0 !important;
-  padding: 5px 7px !important;
+  padding: 7px 10px !important;
   background: rgba(17, 16, 12, 0.94) !important;
   box-shadow: none !important;
   color: #efe9d8 !important;
-  font: 10px/1.2 "IBM Plex Mono", ui-monospace, monospace !important;
+  font: 500 13px/1.2 "IBM Plex Mono", ui-monospace, monospace !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -449,8 +505,8 @@ h3 {
 }
 .jumpscare-v2-sub {
   margin-top: 1.2rem;
-  font: 700 0.72rem/1 "IBM Plex Mono", ui-monospace, monospace;
-  letter-spacing: 0.42em;
+  font: 700 1rem/1 "IBM Plex Mono", ui-monospace, monospace;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   color: #efe9d8;
   background: #8a1e16;
@@ -467,10 +523,10 @@ h3 {
 }
 .jumpscare-v2-meta {
   margin-top: 0.8rem;
-  font: 0.52rem/1 "IBM Plex Mono", monospace;
+  font: 500 0.8rem/1 "IBM Plex Mono", monospace;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(239,233,216,0.55);
+  color: rgba(239,233,216,0.8);
   opacity: 0;
 }
 .jumpscare-v2.is-active .jumpscare-v2-meta {

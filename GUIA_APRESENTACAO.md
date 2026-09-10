@@ -83,6 +83,7 @@ Leiam esta parte, todos:
 
 6. **O mapa carrega as ruas do OpenStreetMap pela internet.** Sem conexão, os pontos aparecem, mas o fundo fica em quadrados cinza. **Testem no notebook que vai apresentar** (checklist no final).
 7. Recomendação: apresentar com o **build de produção** (`npm run build` e depois `npm run preview`), navegador em **tela cheia** (F11), abas extras fechadas.
+8. **Legibilidade no projetor:** as fontes já foram aumentadas e engrossadas para leitura de longe (base de 18–19px em tela cheia, textos de apoio nunca abaixo de ~13px, cinzas mais claros). Se mesmo assim a última fileira não enxergar, use o **zoom do navegador (Ctrl e +) em 110–125%** — o layout aguenta. As fontes agora são carregadas do próprio site (não precisam de internet).
 
 ---
 
@@ -801,6 +802,7 @@ Estas são as pendências que a gente **precisa resolver antes do dia** (o Mateu
 - [ ] Ensaiamento completo no notebook de apresentação (com som), cronometrando
 - [ ] Volume do som ambiente testado (e o do jumpscare!)
 - [ ] Internet testada **com o mapa aberto** (clicar Tiúma)
+- [ ] Legibilidade testada **no projetor da sala, do fundo**: se precisar, zoom do navegador em 110–125% (Ctrl e +)
 - [ ] Build de produção feito (`npm run build`)
 - [ ] "Reduzir animações" do sistema conferido (planejar plano B do jumpscare)
 - [ ] Guias impressos / abertos em uma aba separada por pessoa (ou no celular)

@@ -13,7 +13,7 @@ export default function Symbol() {
       <div className="mx-auto max-w-6xl">
         <ChapterHeader no="10" kicker="a perna como símbolo" title={renderTitle(symbol.heading)} />
         <Reveal>
-          <Paragraphs text={symbol.lead} className="max-w-3xl text-lg text-bone/85" />
+          <Paragraphs text={symbol.lead} className="max-w-3xl text-xl text-bone/90" />
         </Reveal>
 
         <div className="mt-10">
@@ -23,7 +23,7 @@ export default function Symbol() {
                 key={x.w}
                 onClick={() => setActive(i)}
                 className={
-                  "px-3 py-2 font-mono text-[0.62rem] tracking-[0.14em] " +
+                  "px-3 py-2 font-mono text-[0.8rem] tracking-[0.14em] " +
                   (active === i ? "bg-bone text-black" : "border border-bone/20 text-bone/80")
                 }
               >
@@ -65,10 +65,10 @@ export default function Symbol() {
                     aria-pressed={active === i}
                     style={{ left: `${cx}%`, top: `${cy}%` }}
                     className={
-                      "absolute -translate-x-1/2 -translate-y-1/2 px-2 py-1 font-mono text-[0.62rem] uppercase tracking-[0.16em] transition-all " +
+                      "absolute -translate-x-1/2 -translate-y-1/2 px-2 py-1 font-mono text-[0.85rem] font-medium uppercase tracking-[0.14em] transition-all " +
                       (active === i
                         ? "scale-125 bg-bloodsoft px-3 text-paper"
-                        : "text-bone/75 hover:text-paper")
+                        : "text-bone/90 hover:text-paper")
                     }
                   >
                     {x.w}
@@ -86,10 +86,10 @@ export default function Symbol() {
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-stone">
+                  <p className="font-mono text-[0.85rem] uppercase tracking-[0.24em] text-stone">
                     a perna como — <span className="text-bloodsoft">{cur.w}</span>
                   </p>
-                  <p className="mt-4 max-w-md font-serif text-xl leading-relaxed text-paper sm:text-2xl">
+                  <p className="mt-4 max-w-lg font-serif text-2xl leading-relaxed text-paper sm:text-3xl">
                     {cur.d}
                   </p>
                   <div className="mt-6 hidden gap-2 md:flex">

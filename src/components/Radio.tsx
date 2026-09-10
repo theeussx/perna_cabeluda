@@ -57,14 +57,14 @@ export default function Radio() {
       <div className="relative mx-auto max-w-6xl">
         <ChapterHeader no="07" kicker="rádio · transmissão arquivada" title={renderTitle(radio.heading)} />
         <Reveal>
-          <Paragraphs text={radio.lead} className="max-w-2xl text-lg text-bone/85" />
+          <Paragraphs text={radio.lead} className="max-w-2xl text-xl text-bone/90" />
         </Reveal>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           <Reveal>
             <div className="relative mx-auto max-w-md">
               <div className="relative rounded-md border border-bone/25 bg-gradient-to-b from-[#1a1610] to-[#0d0b07] p-5 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.9)]">
-                <div className="flex items-center justify-between font-mono text-[0.55rem] uppercase tracking-[0.2em] text-stone">
+                <div className="flex items-center justify-between font-mono text-[0.72rem] uppercase tracking-[0.2em] text-stone">
                   <span>{radio.bodyLabel}</span>
                   <span className="flex items-center gap-1.5">
                     <span
@@ -78,7 +78,7 @@ export default function Radio() {
                 </div>
 
                 <div className="mt-3 rounded-sm border border-bone/20 bg-[#0a0805] p-4">
-                  <div className="flex justify-between text-[0.55rem] font-mono uppercase tracking-widest text-stone/70">
+                  <div className="flex justify-between text-[0.72rem] font-mono uppercase tracking-widest text-stone/85">
                     <span>{radio.am}</span>
                     <span className="text-bloodsoft">{radio.fm}</span>
                     <span>{radio.amMax}</span>
@@ -101,10 +101,10 @@ export default function Radio() {
                     />
                   </div>
                   <div className="mt-2 flex items-center gap-2 text-bone/80">
-                    <span className="font-mono text-[0.55rem] uppercase tracking-[0.2em] text-stone">
+                    <span className="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-stone">
                       {radio.synth}
                     </span>
-                    <span className="font-mono text-[0.8rem]">{live ? "92.7" : "— . —"}</span>
+                    <span className="font-mono text-[1rem]">{live ? "92.7" : "— . —"}</span>
                     <DialWaves live={live} />
                   </div>
                 </div>
@@ -114,7 +114,7 @@ export default function Radio() {
                     onClick={goLive}
                     aria-pressed={live}
                     className={
-                      "flex-1 py-2.5 font-mono text-[0.68rem] uppercase tracking-[0.24em] transition-colors " +
+                      "flex-1 py-2.5 font-mono text-[0.82rem] uppercase tracking-[0.24em] transition-colors " +
                       (live
                         ? "bg-bloodsoft text-paper"
                         : "border border-bone/30 text-bone hover:border-bone/60")
@@ -134,7 +134,7 @@ export default function Radio() {
                 </div>
               </div>
 
-              <div className="mt-4 text-center font-mono text-[0.52rem] uppercase tracking-[0.28em] text-stone/60">
+              <div className="mt-4 text-center font-mono text-[0.72rem] uppercase tracking-[0.28em] text-stone/80">
                 {radio.footer}
               </div>
             </div>
@@ -144,7 +144,7 @@ export default function Radio() {
             <Reveal>
               <div className="border-l-2 border-bone/25 pl-5">
                 <Tag>{disclaimers.tag}</Tag>
-                <div className="mt-5 min-h-[150px]">
+                <div className="mt-5 min-h-[190px]">
                   <AnimatePresence mode="wait">
                     <motion.p
                       key={idx}
@@ -152,7 +152,7 @@ export default function Radio() {
                       animate={{ opacity: live ? 1 : 0.35 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.6 }}
-                      className="font-serif text-2xl italic leading-snug text-bone sm:text-3xl"
+                      className="font-serif text-3xl italic leading-snug text-bone sm:text-4xl"
                     >
                       {live ? radio.fragments[idx] : radio.idle}
                     </motion.p>
@@ -160,7 +160,7 @@ export default function Radio() {
                 </div>
                 <Paragraphs
                   text={disclaimers.rec}
-                  className="mt-4 max-w-md text-sm leading-relaxed text-stone"
+                  className="mt-4 max-w-md text-[1rem] leading-relaxed text-stone"
                 />
               </div>
             </Reveal>

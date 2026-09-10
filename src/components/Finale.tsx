@@ -19,10 +19,10 @@ function LineCmp({ p, l }: { p: MotionValue<number>; l: Line }) {
       <span
         className={
           l.mono
-            ? "font-mono text-sm tracking-[0.3em] uppercase text-bone"
+            ? "font-mono text-lg tracking-[0.3em] uppercase text-bone"
             : l.big
-              ? "block font-serif text-[clamp(2rem,7vw,5rem)] leading-[1.04] text-paper"
-              : "block font-serif italic text-[clamp(1.3rem,3.5vw,2.6rem)] text-bone"
+              ? "block font-serif text-[clamp(2.4rem,7.5vw,5.8rem)] leading-[1.04] text-paper"
+              : "block font-serif italic text-[clamp(1.6rem,4vw,3.2rem)] text-bone"
         }
       >
         {l.text}

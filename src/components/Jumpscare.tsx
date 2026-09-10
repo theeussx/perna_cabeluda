@@ -193,7 +193,7 @@ export default function Jumpscare() {
                 phase === "tension" ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
             >
-              <p className="font-mono text-[0.58rem] uppercase tracking-[0.4em] text-stone/60">
+              <p className="font-mono text-[0.75rem] uppercase tracking-[0.4em] text-stone/80">
                 o arquivo termina aqui
               </p>
 
@@ -220,16 +220,16 @@ export default function Jumpscare() {
               </div>
 
               <div className="flex flex-col items-center gap-2">
-                <p className="font-serif italic text-bone/70 text-lg tracking-wide animate-pulse">
+                <p className="font-serif italic text-bone text-2xl tracking-wide animate-pulse">
                   você ouviu isso?
                 </p>
-                <p className="font-mono text-[0.5rem] uppercase tracking-[0.3em] text-stone/40">
+                <p className="font-mono text-[0.72rem] uppercase tracking-[0.3em] text-stone/70">
                   [ arraste · 1975 · corredor ]
                 </p>
               </div>
 
               {/* glitching archive stamp */}
-              <div className="mt-6 font-mono text-[0.55rem] uppercase tracking-[0.25em] text-bloodsoft/50">
+              <div className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.25em] text-bloodsoft/80">
                 <span className="inline-block animate-[flicker_0.15s_steps(2)_infinite]">ARQUIVO ENCERRADO</span>
                 <span className="mx-2 opacity-30">·</span>
                 <span className="inline-block animate-[flicker_0.22s_steps(2)_infinite_0.1s]">SEM SAÍDA</span>
@@ -242,10 +242,10 @@ export default function Jumpscare() {
                 phase === "whisper" ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
             >
-              <p className="font-mono text-[0.62rem] uppercase tracking-[0.5em] text-paper/80 animate-[flicker_0.18s_steps(2)_infinite]">
+              <p className="font-mono text-[0.95rem] uppercase tracking-[0.45em] text-paper animate-[flicker_0.18s_steps(2)_infinite]">
                 ela está atrás de você
               </p>
-              <p className="mt-4 font-serif text-[0.75rem] italic text-stone/50">
+              <p className="mt-4 font-serif text-[1.1rem] italic text-stone/75">
                 não olhe para trás
               </p>
               {/* faint footsteps dots */}
@@ -281,19 +281,19 @@ export default function Jumpscare() {
           }`}
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_70%_at_50%_40%,rgba(138,30,22,0.12),transparent_70%)]" />
-          <p className="font-mono text-[0.6rem] uppercase tracking-[0.4em] text-bloodsoft/70">
+          <p className="font-mono text-[0.78rem] uppercase tracking-[0.4em] text-bloodsoft">
             você sentiu?
           </p>
-          <h3 className="mt-6 max-w-2xl font-serif text-[clamp(1.6rem,4vw,2.8rem)] leading-[1.1] text-paper">
+          <h3 className="mt-6 max-w-2xl font-serif text-[clamp(2rem,4.5vw,3.4rem)] leading-[1.1] text-paper">
             Ela sempre aparece <br />
             <span className="italic text-bone">quando você menos espera.</span>
           </h3>
-          <p className="mt-6 max-w-md font-mono text-[0.58rem] leading-relaxed tracking-wide text-stone">
+          <p className="mt-6 max-w-lg font-mono text-[0.9rem] leading-relaxed tracking-wide text-stone">
             Em 1975 disseram que era invenção do povo. <br />
             Mas o povo nunca parou de contar. <br />
-            <span className="text-bone/60">Agora ela sabe que você leu até o fim.</span>
+            <span className="text-bone/80">Agora ela sabe que você leu até o fim.</span>
           </p>
-          <p className="mt-10 font-mono text-[0.5rem] uppercase tracking-[0.35em] text-stone/40">
+          <p className="mt-10 font-mono text-[0.72rem] uppercase tracking-[0.35em] text-stone/70">
             role para os créditos · se tiver coragem
           </p>
 

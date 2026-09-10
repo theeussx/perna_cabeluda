@@ -57,6 +57,24 @@ src/
   styles/index.css            — design tokens, tipografia, utilitários
 ```
 
+## Tipografia e legibilidade (projetor)
+
+O site foi calibrado para ser lido **de longe, num projetor**:
+
+- **Tamanho-base** em `src/styles/index.css` (`--base-font`): 17px em telas
+  pequenas, 18px a partir de 1280px e 19px a partir de 1600px. Como todo o site
+  usa `rem`, mudar esse valor escala tudo de uma vez.
+- **Fontes servidas localmente** via `@fontsource` (importadas no topo de
+  `index.css`) — não dependem do Google Fonts nem de internet no dia.
+- **Pesos**: Cormorant Garamond em 500 (o 400 é fino demais em projeção) e
+  IBM Plex Mono em 500.
+- **Contraste**: o cinza `stone` passou de `#5C5C50` (2.9:1) para `#A39C86`
+  (7.3:1); o vermelho `bloodsoft` de `#A63A2B` para `#C4503F` (4.4:1).
+  Nenhum texto fica abaixo de ~0.72rem (≈13–14px).
+
+Se a sala for muito grande ou o projetor fraco, aumente `--base-font` (ex.: 20–21px)
+ou use o zoom do navegador (Ctrl e +): o layout foi testado até 1280×720.
+
 Assets (`public/art/*.webp`) são ilustrações originais geradas para este projeto;
 versos de cordel e composições são originais, sem reproduzir obras protegidas.
 

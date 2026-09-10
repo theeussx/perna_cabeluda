@@ -17,7 +17,7 @@ export default function Ending() {
         />
         <div className="relative z-10 max-w-4xl">
           <Reveal>
-            <p className="font-mono text-[0.65rem] uppercase tracking-[0.4em] text-bloodsoft">
+            <p className="font-mono text-[0.85rem] uppercase tracking-[0.4em] text-bloodsoft">
               {ending.eyebrow}
             </p>
           </Reveal>
@@ -27,14 +27,14 @@ export default function Ending() {
             </h2>
           </Reveal>
           <Reveal delay={0.35}>
-            <p className="mx-auto mt-8 max-w-xl font-serif text-xl italic leading-snug text-bone sm:text-2xl">
+            <p className="mx-auto mt-8 max-w-2xl font-serif text-2xl italic leading-snug text-bone sm:text-3xl">
               {ending.subtitle}
             </p>
           </Reveal>
           <Reveal delay={0.5}>
-            <div className="mt-10 flex flex-col items-center gap-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-stone">
+            <div className="mt-10 flex flex-col items-center gap-2 font-mono text-[0.78rem] uppercase tracking-[0.2em] text-stone">
               {ending.credits.map((c, i) => (
-                <span key={i} className={i === ending.credits.length - 1 ? "text-bone/70" : ""}>
+                <span key={i} className={i === ending.credits.length - 1 ? "text-bone/85" : ""}>
                   {c}
                 </span>
               ))}
@@ -46,7 +46,7 @@ export default function Ending() {
       <section id="fontes" className="relative px-5 py-24 sm:px-10 md:py-32">
         <div className="mx-auto max-w-5xl">
           <Reveal>
-            <p className="font-mono text-[0.7rem] uppercase tracking-[0.3em] text-bloodsoft">
+            <p className="font-mono text-[0.85rem] uppercase tracking-[0.3em] text-bloodsoft">
               20 · arquivo
             </p>
           </Reveal>
@@ -56,7 +56,7 @@ export default function Ending() {
           <Reveal delay={0.15}>
             <Paragraphs
               text={ending.sourcesIntro}
-              className="mt-5 max-w-3xl text-base leading-relaxed text-[#c6bda2]"
+              className="mt-5 max-w-3xl text-lg leading-relaxed text-[#c6bda2]"
             />
           </Reveal>
 
@@ -66,23 +66,23 @@ export default function Ending() {
                 <Reveal>
                   <div className="flex flex-wrap items-center gap-3">
                     <Tag className="text-bloodsoft">arquivo · {String(gi + 1).padStart(2, "0")}</Tag>
-                    <h3 className="font-serif text-xl text-paper sm:text-2xl">{g.h}</h3>
+                    <h3 className="font-serif text-2xl text-paper sm:text-3xl">{g.h}</h3>
                   </div>
-                  <p className="mt-1 max-w-2xl text-xs italic text-stone">{g.note}</p>
+                  <p className="mt-1 max-w-2xl text-base italic text-stone">{g.note}</p>
                 </Reveal>
                 <div className="mt-4 space-y-px bg-bone/10">
                   {g.items.map((it) => (
                     <Reveal key={it.t}>
-                      <div className="grid gap-1 bg-ink px-5 py-4 sm:grid-cols-[220px_1fr] sm:gap-6">
-                        <p className="font-serif text-base text-bone">{it.t}</p>
+                      <div className="grid gap-1 bg-ink px-5 py-4 sm:grid-cols-[260px_1fr] sm:gap-6">
+                        <p className="font-serif text-xl text-bone">{it.t}</p>
                         <div>
-                          <p className="text-sm leading-relaxed text-[#c6bda2]">{it.d}</p>
+                          <p className="text-[1.05rem] leading-relaxed text-[#c6bda2]">{it.d}</p>
                           {it.u && (
                             <a
                               href={it.u}
                               target="_blank"
                               rel="noreferrer noopener"
-                              className="mt-1 inline-block break-all font-mono text-[0.58rem] text-stone underline-offset-2 hover:text-bone hover:underline"
+                              className="mt-1 inline-block break-all font-mono text-[0.75rem] text-stone underline-offset-2 hover:text-bone hover:underline"
                             >
                               {it.u}
                             </a>
@@ -99,14 +99,14 @@ export default function Ending() {
           <Reveal>
             <div className="mt-16 border-t border-bone/15 pt-8 text-center">
               {meta.conceptLines.map((l) => (
-                <p key={l} className="font-serif text-2xl italic leading-snug text-bone">
+                <p key={l} className="font-serif text-3xl italic leading-snug text-bone sm:text-4xl">
                   {l}
                 </p>
               ))}
-              <p className="mt-6 font-mono text-[0.55rem] uppercase tracking-[0.3em] text-stone">
+              <p className="mt-6 font-mono text-[0.72rem] uppercase tracking-[0.3em] text-stone">
                 {meta.footerLine}
               </p>
-              <p className="mt-8 font-mono text-[0.48rem] uppercase tracking-[0.3em] text-stone/40">
+              <p className="mt-8 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-stone/70">
                 se você ouviu passos atrás de você, não foi o site.
               </p>
             </div>

@@ -64,14 +64,14 @@ export function ChapterHeader({
 }) {  return (
     <header className={cn("mb-12 md:mb-16", align === "center" && "text-center")}>
       <Reveal>
-        <p className="font-mono text-[0.68rem] tracking-[0.3em] text-stone uppercase flex items-center gap-3">
-          <span className="text-bloodsoft font-medium">{no}</span>
+        <p className="font-mono text-[0.85rem] tracking-[0.28em] text-stone uppercase flex items-center gap-3 sm:text-[0.95rem]">
+          <span className="text-bloodsoft font-semibold">{no}</span>
           <span className="h-px w-8 bg-bone/25" aria-hidden="true" />
           <span>{kicker}</span>
         </p>
       </Reveal>
       <Reveal delay={0.08}>
-        <h2 className="mt-5 max-w-4xl text-3xl leading-[1.08] sm:text-5xl md:text-[3.4rem] text-paper">
+        <h2 className="mt-5 max-w-5xl text-[2.4rem] leading-[1.08] sm:text-5xl md:text-[3.9rem] text-paper">
           {title}
         </h2>
       </Reveal>

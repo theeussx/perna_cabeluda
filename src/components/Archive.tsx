@@ -20,7 +20,7 @@ export default function Archive() {
         <Reveal>
           <Paragraphs
             text={archive.lead}
-            className="max-w-2xl text-lg text-bone/85"
+            className="max-w-2xl text-xl text-bone/90"
           />
         </Reveal>
 
@@ -29,10 +29,10 @@ export default function Archive() {
           <Reveal>
             <div className="relative paper-surface overflow-hidden p-6 sm:p-8">
               <div className="flex items-center justify-between gap-4">
-                <p className="font-serif text-sm tracking-wide text-[#5a4527]">
+                <p className="font-serif text-lg tracking-wide text-[#5a4527]">
                   DIÁRIO DE PERNAMBUCO · RECIFE
                 </p>
-                <p className="font-mono text-[0.55rem] uppercase tracking-[0.2em] text-[#6f5a33]">
+                <p className="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-[#5a4527]">
                   dezembro · 1975
                 </p>
               </div>
@@ -41,7 +41,7 @@ export default function Archive() {
                 {card.tags.map((t) => (
                   <span
                     key={t}
-                    className="font-mono text-[0.55rem] uppercase tracking-[0.14em] text-[#4a3a1e]"
+                    className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-[#4a3a1e]"
                   >
                     ▍{t}
                   </span>
@@ -55,10 +55,10 @@ export default function Archive() {
                       key={c.id}
                       onClick={() => setActive(c.id)}
                       className={
-                        "px-3 py-2 text-left font-mono text-[0.6rem] uppercase tracking-[0.12em] transition-colors " +
+                        "px-3 py-2 text-left font-mono text-[0.78rem] uppercase tracking-[0.12em] transition-colors " +
                         (active === c.id
                           ? "bg-[#221a10] text-[#e4d6ad]"
-                          : "text-[#6f5a33] hover:text-[#3a2d16]")
+                          : "text-[#5a4527] hover:text-[#3a2d16]")
                       }
                     >
                       {c.label}
@@ -74,10 +74,10 @@ export default function Archive() {
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.4 }}
                     >
-                      <h3 className="font-serif text-2xl leading-tight text-[#241b0d] sm:text-3xl">
+                      <h3 className="font-serif text-3xl leading-tight text-[#241b0d] sm:text-4xl">
                         {card.heading}
                       </h3>
-                      <p className="mt-4 text-[0.98rem] leading-relaxed text-[#46361b]">
+                      <p className="mt-4 text-[1.1rem] leading-relaxed text-[#3a2d16]">
                         {card.body}
                       </p>
                     </motion.div>
@@ -95,21 +95,21 @@ export default function Archive() {
           {/* reading column */}
           <div className="space-y-4">
             <Reveal>
-              <p className="lede text-[1.05rem] leading-relaxed">{archive.note}</p>
+              <p className="lede text-[1.2rem] leading-relaxed">{archive.note}</p>
             </Reveal>
             <Reveal delay={0.05}>
-              <div className="border-l-2 border-blood/60 bg-blood/[0.06] p-4 text-sm text-bone/90">
-                <span className="mb-1 inline-block font-mono text-[0.6rem] uppercase tracking-[0.2em] text-bloodsoft">
+              <div className="border-l-2 border-blood/60 bg-blood/[0.06] p-5 text-[1.05rem] leading-relaxed text-bone">
+                <span className="mb-1 inline-block font-mono text-[0.78rem] uppercase tracking-[0.2em] text-bloodsoft">
                   {archive.calloutTag}
                 </span>
                 {archive.callout}
               </div>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="text-[0.8rem] leading-relaxed text-stone">{archive.legendIntro}</p>
+              <p className="text-[1rem] leading-relaxed text-stone">{archive.legendIntro}</p>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mb-2 font-mono text-[0.6rem] uppercase tracking-[0.24em] text-stone">
+              <p className="mb-2 font-mono text-[0.78rem] uppercase tracking-[0.24em] text-stone">
                 {legend.heading}
               </p>
             </Reveal>

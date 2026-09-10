@@ -42,10 +42,10 @@ function FragLine({
       <span
         className={
           frag.big
-            ? "block font-serif text-[clamp(1.9rem,6vw,4.6rem)] leading-[1.02] text-paper"
+            ? "block font-serif text-[clamp(2.2rem,6.5vw,5.2rem)] leading-[1.02] text-paper"
             : frag.s > 0.5
-              ? "font-serif italic text-[clamp(1.35rem,3.6vw,2.5rem)] text-bone"
-              : "font-mono text-[clamp(0.9rem,1.6vw,1.15rem)] tracking-[0.08em] text-bone/90"
+              ? "font-serif italic text-[clamp(1.6rem,4vw,3rem)] text-bone"
+              : "font-mono text-[clamp(1.05rem,1.9vw,1.5rem)] tracking-[0.08em] text-bone"
         }
       >
         {frag.text}
@@ -86,13 +86,13 @@ export default function PernaReveal() {
         />
 
         {/* corner metadata */}
-        <div className="absolute inset-x-0 top-6 z-20 flex items-center justify-between px-5 text-stone font-mono text-[0.6rem] tracking-[0.3em] uppercase sm:px-10">
+        <div className="absolute inset-x-0 top-6 z-20 flex items-center justify-between px-5 text-stone font-mono text-[0.78rem] tracking-[0.3em] uppercase sm:px-10">
           <span>{reveal.cornerLeft}</span>
           <span className="text-bloodsoft">{reveal.chapterTag}</span>
           <span className="hidden sm:inline">{reveal.cornerRight}</span>
         </div>
 
-        <div className="pointer-events-none absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 -rotate-90 text-stone/70 font-mono text-[0.58rem] tracking-[0.5em] uppercase lg:block">
+        <div className="pointer-events-none absolute left-6 top-1/2 z-10 hidden -translate-y-1/2 -rotate-90 text-stone/85 font-mono text-[0.75rem] tracking-[0.5em] uppercase lg:block">
           — {reveal.gutter} —
         </div>
 
@@ -166,7 +166,7 @@ export default function PernaReveal() {
           className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-center"
           style={{ opacity: useTransform(scrollYProgress, [0, 0.03, 0.08], [1, 0.6, 0]) }}
         >
-          <span className="font-mono text-[0.6rem] tracking-[0.3em] text-stone uppercase">
+          <span className="font-mono text-[0.78rem] tracking-[0.3em] text-stone uppercase">
             {reveal.scrollHint}
           </span>
           <div className="mx-auto mt-2 h-10 w-px bg-gradient-to-b from-bone/60 to-transparent" />

@@ -21,11 +21,11 @@ export default function Cinema() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60" />
                 <div className="h-6 w-full bg-black md:h-8" />
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 font-mono text-[0.55rem] tracking-[0.2em] text-paper/70">
+                <span className="absolute inset-y-0 left-0 flex items-center pl-3 font-mono text-[0.72rem] tracking-[0.2em] text-paper/70">
                   ⎔ REC
                 </span>
               </div>
-              <figcaption className="mt-3 text-center font-mono text-[0.55rem] uppercase tracking-[0.18em] text-stone">
+              <figcaption className="mt-3 text-center font-mono text-[0.72rem] uppercase tracking-[0.18em] text-stone">
                 {cinema.filmStillCaption}
               </figcaption>
             </figure>
@@ -37,8 +37,8 @@ export default function Cinema() {
                 <p
                   className={
                     i === 0
-                      ? "text-lg leading-relaxed text-bone/90"
-                      : "text-[0.98rem] leading-relaxed text-[#c6bda2]"
+                      ? "text-xl leading-relaxed text-bone"
+                      : "text-[1.1rem] leading-relaxed text-[#c6bda2]"
                   }
                 >
                   {p}
@@ -46,24 +46,24 @@ export default function Cinema() {
               </Reveal>
             ))}
             <Reveal>
-              <div className="grid grid-cols-2 gap-px bg-bone/10 text-sm">
+              <div className="grid grid-cols-2 gap-px bg-bone/10">
                 {cinema.specs.map((s) => (
                   <div key={s.k} className="bg-[#070604] p-4">
-                    <p className="font-mono text-[0.55rem] uppercase tracking-[0.2em] text-stone">
+                    <p className="font-mono text-[0.72rem] uppercase tracking-[0.2em] text-stone">
                       {s.k}
                     </p>
-                    <p className="mt-1 font-serif text-lg text-paper">{s.v}</p>
+                    <p className="mt-1 font-serif text-xl text-paper">{s.v}</p>
                   </div>
                 ))}
               </div>
             </Reveal>
             <Reveal>
-              <p className="text-sm text-stone">{cinema.note}</p>
+              <p className="text-[1rem] text-stone">{cinema.note}</p>
             </Reveal>
             <Reveal>
               <div className="border-l-2 border-bone/40 bg-white/[0.02] p-4">
                 <Tag className="text-bone">{cinema.pullTag}</Tag>
-                <p className="mt-2 font-serif text-lg italic leading-snug text-paper">
+                <p className="mt-2 font-serif text-2xl italic leading-snug text-paper">
                   {cinema.pull}
                 </p>
               </div>
