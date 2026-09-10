@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Experiência digital imersiva — A Perna Cabeluda, Setembro Literário",
+  "description": "Experiência digital imersiva — A Perna Cabeluda, Setembro Literário.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
