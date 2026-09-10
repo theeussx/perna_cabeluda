@@ -165,7 +165,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
     // --- MASTER SCARE BUS with distortion ---
     const scareBus = ctx.createGain();
-    scareBus.gain.value = 1.1;
+    // Deliberately pushes the hit into the distorted, almost-broken zone.
+    scareBus.gain.value = 1.45;
     const shaper = ctx.createWaveShaper();
     shaper.curve = makeDistortionCurve(180);
     shaper.oversample = "4x";
@@ -262,7 +263,7 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     noiseFilter2.type = "highpass";
     noiseFilter2.frequency.value = 800;
     noiseGain.gain.setValueAtTime(0, now);
-    noiseGain.gain.linearRampToValueAtTime(0.85, now + 0.006);
+    noiseGain.gain.linearRampToValueAtTime(1.15, now + 0.006);
     noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.55);
     noise.connect(noiseFilter);
     noiseFilter.connect(noiseFilter2);
@@ -270,6 +271,24 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     noiseGain.connect(scareBus);
     noise.start(now);
     noise.stop(now + 0.6);
+
+    // A second clipped transient gives the scare a physical "slam" instead
+    // of sounding like one clean synth note.
+    const hit = ctx.createBufferSource();
+    const hitFilter = ctx.createBiquadFilter();
+    const hitGain = ctx.createGain();
+    hit.buffer = makeNoiseBuffer(ctx, 0.45);
+    hitFilter.type = "lowpass";
+    hitFilter.frequency.setValueAtTime(760, now);
+    hitFilter.frequency.exponentialRampToValueAtTime(120, now + 0.32);
+    hitGain.gain.setValueAtTime(0, now);
+    hitGain.gain.linearRampToValueAtTime(1.5, now + 0.012);
+    hitGain.gain.exponentialRampToValueAtTime(0.001, now + 0.42);
+    hit.connect(hitFilter);
+    hitFilter.connect(hitGain);
+    hitGain.connect(scareBus);
+    hit.start(now);
+    hit.stop(now + 0.45);
 
     // 7. GRITTY TEXTURE - low saw for dread tail
     const grit = ctx.createOscillator();

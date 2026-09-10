@@ -204,7 +204,7 @@ export default function Jumpscare() {
                   alt=""
                   aria-hidden="true"
                   className={`mx-auto h-full w-auto object-contain transition-all duration-[3800ms] ease-out ${
-                    phase === "tension" ? "scale-[0.28] opacity-[0.18] blur-[0.5px]" : "scale-[0.15] opacity-0"
+                    phase === "tension" ? "scale-[0.42] opacity-[0.28] blur-[0.5px] animate-[jumpscare-approach_1.1s_steps(3,end)_infinite]" : "scale-[0.15] opacity-0"
                   }`}
                   style={{
                     filter: "brightness(0.25) contrast(1.2) sepia(0.2)",
@@ -258,7 +258,7 @@ export default function Jumpscare() {
 
             {/* Phase: blackout - pure black */}
             <div
-              className={`absolute inset-0 bg-black transition-opacity duration-200 ${
+              className={`absolute inset-0 bg-black transition-opacity duration-100 ${
                 phase === "blackout" ? "opacity-100" : "opacity-0 pointer-events-none"
               }`}
             />

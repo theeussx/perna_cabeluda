@@ -155,6 +155,12 @@ h3 {
   animation: sonar 2.4s ease-out infinite;
 }
 
+@keyframes jumpscare-approach {
+  0%, 100% { transform: scale(0.38) translateX(0); opacity: 0.18; }
+  35% { transform: scale(0.46) translateX(-3px); opacity: 0.3; }
+  60% { transform: scale(0.41) translateX(4px); opacity: 0.22; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
@@ -262,7 +268,7 @@ h3 {
   pointer-events: auto;
   visibility: visible;
   transform: scale(1);
-  transition: transform 90ms cubic-bezier(.1,.9,.2,1), opacity 60ms linear;
+  transition: transform 45ms cubic-bezier(.1,.9,.2,1), opacity 35ms linear;
 }
 
 /* white flash at impact */
@@ -275,11 +281,13 @@ h3 {
   pointer-events: none;
 }
 .jumpscare-v2.is-active .jumpscare-v2-flash {
-  animation: jsv2-flash 140ms ease-out both;
+  animation: jsv2-flash 190ms ease-out both;
 }
 @keyframes jsv2-flash {
   0% { opacity: 1; }
-  18% { opacity: 0.92; }
+  12% { opacity: 0.95; }
+  24% { opacity: 0.08; }
+  31% { opacity: 0.7; background: #8a1e16; }
   100% { opacity: 0; }
 }
 
@@ -335,16 +343,17 @@ h3 {
   height: 100vh;
   object-fit: cover;
   object-position: center 72%;
-  filter: contrast(1.65) brightness(0.62) saturate(0.6) sepia(0.08);
+  filter: contrast(1.9) brightness(0.82) saturate(0.72) sepia(0.08);
   transform-origin: center 78%;
 }
 .jumpscare-v2.is-active .jumpscare-v2-main {
   animation: jsv2-zoom 850ms cubic-bezier(.1,.8,.2,1) both, jsv2-shake 48ms steps(2, end) infinite;
 }
 @keyframes jsv2-zoom {
-  0% { transform: scale(1.25); }
-  12% { transform: scale(0.92); }
-  100% { transform: scale(1.55); }
+  0% { transform: scale(0.62); filter: contrast(2.4) brightness(0.25) blur(4px); }
+  8% { transform: scale(0.62); filter: contrast(2.2) brightness(0.5) blur(1px); }
+  14% { transform: scale(1.04); filter: contrast(2) brightness(1) blur(0); }
+  100% { transform: scale(1.72); filter: contrast(1.9) brightness(0.82) blur(0); }
 }
 @keyframes jsv2-shake {
   0% { transform: translate(0,0) scale(1.25); }
@@ -430,7 +439,7 @@ h3 {
   opacity: 0;
 }
 .jumpscare-v2.is-active .jumpscare-v2-title {
-  animation: jsv2-title 700ms cubic-bezier(.1,.8,.2,1) 60ms both;
+  animation: jsv2-title 560ms cubic-bezier(.1,.8,.2,1) 210ms both;
 }
 @keyframes jsv2-title {
   0% { opacity: 0; transform: rotate(-8deg) scale(2.1); filter: blur(8px); }
@@ -450,7 +459,7 @@ h3 {
   transform: translateY(12px);
 }
 .jumpscare-v2.is-active .jumpscare-v2-sub {
-  animation: jsv2-sub 500ms ease-out 140ms both;
+  animation: jsv2-sub 420ms ease-out 280ms both;
 }
 @keyframes jsv2-sub {
   0% { opacity: 0; transform: translateY(18px) scale(0.9); }
