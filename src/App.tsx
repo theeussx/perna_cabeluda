@@ -10,17 +10,9 @@ import Entrance from "./components/Entrance";
 import PernaReveal from "./components/PernaReveal";
 import Archive from "./components/Archive";
 import Travel from "./components/Travel";
-import Newspaper from "./components/Newspaper";
-import Radio from "./components/Radio";
-import Cordel from "./components/Cordel";
 import Contexto from "./components/Contexto";
-import Symbol from "./components/Symbol";
-import MapSection from "./components/Map";
-import Timeline from "./components/Timeline";
-import Culture from "./components/Culture";
 import Cinema from "./components/Cinema";
 import Verdict from "./components/Verdict";
-import YouAreNow from "./components/YouAreNow";
 import Participants from "./components/Participants";
 import Finale from "./components/Finale";
 import Jumpscare from "./components/Jumpscare";
@@ -50,7 +42,7 @@ function useLenis() {
 function GhostStalker() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, (v) => v * 0.18);
-  const opacity = useTransform(scrollY, [500, 1400, 5200, 7600], [0, 0.08, 0.07, 0]);
+  const opacity = useTransform(scrollY, [300, 1000, 3200, 4400], [0, 0.08, 0.07, 0]);
   return (
     <motion.div
       className="pointer-events-none fixed right-[-4vw] top-0 z-[2] flex h-screen w-auto items-end justify-end overflow-hidden"
@@ -74,17 +66,9 @@ function Scroll() {
       <PernaReveal />
       <Archive />
       <Travel />
-      <Newspaper />
-      <Radio />
-      <Cordel />
       <Contexto />
-      <Symbol />
-      <MapSection />
-      <Timeline />
-      <Culture />
       <Cinema />
       <Verdict />
-      <YouAreNow />
       <Participants />
       <Finale />
       <Jumpscare />

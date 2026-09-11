@@ -13,15 +13,11 @@ type Frag = (typeof reveal.fragments)[number] & { s: number; e: number };
 
 /** Scroll windows for each narrative fragment (editable here, text in content). */
 const WINDOWS: [number, number][] = [
-  [0.05, 0.135],
-  [0.125, 0.21],
-  [0.2, 0.285],
-  [0.275, 0.36],
-  [0.35, 0.44],
-  [0.43, 0.545],
-  [0.53, 0.64],
-  [0.73, 0.88],
-  [0.86, 1.0],
+  [0.05, 0.22],
+  [0.2, 0.38],
+  [0.36, 0.55],
+  [0.62, 0.86],
+  [0.85, 1.0],
 ];
 const FRAGS: Frag[] = reveal.fragments.map((f, i) => ({ ...f, s: WINDOWS[i][0], e: WINDOWS[i][1] }));
 
@@ -69,11 +65,11 @@ export default function PernaReveal() {
     if (v <= 4) setComplete(true);
   });
 
-  const firstHalf = FRAGS.slice(0, 7);
-  const revealPart = FRAGS.slice(7);
+  const firstHalf = FRAGS.slice(0, 3);
+  const revealPart = FRAGS.slice(3);
 
   return (
-    <div ref={ref} className="relative h-[540vh] bg-black" id="aparecimento">
+    <div ref={ref} className="relative h-[270vh] bg-black" id="aparecimento">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#000] via-[#050403] to-[#0a0603]" />
         <motion.div

@@ -7,7 +7,7 @@ export default function Contexto() {
     <section id="contexto" className="relative px-5 py-24 sm:px-10 md:py-36">
       <div className="mx-auto max-w-6xl">
         <ChapterHeader
-          no="09"
+          no="05"
           kicker="o que existia por trás da lenda"
           title={renderTitle(contexto.heading)}
         />
@@ -35,20 +35,6 @@ export default function Contexto() {
             <p className="mt-4 max-w-3xl text-[1.1rem] leading-relaxed text-[#c6bda2]">{contexto.caution2}</p>
           </div>
         </Reveal>
-
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
-          {contexto.registers.map((r, i) => (
-            <Reveal key={r.k} delay={i * 0.05}>
-              <div className="text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-bone/25 font-mono text-[0.78rem] uppercase tracking-widest text-bone">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <p className="mt-4 font-serif text-xl uppercase tracking-wide text-paper">{r.k}</p>
-                <p className="mx-auto mt-2 max-w-xs text-[1rem] text-stone">{r.d}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </div>
     </section>
   );

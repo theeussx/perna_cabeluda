@@ -13,7 +13,7 @@ export default function Archive() {
     <section id="arquivo" className="relative px-5 py-24 sm:px-10 md:py-36">
       <div className="mx-auto max-w-6xl">
         <ChapterHeader
-          no="04"
+          no="03"
           kicker="arquivo"
           title={renderTitle(archive.heading)}
         />
@@ -104,9 +104,6 @@ export default function Archive() {
                 </span>
                 {archive.callout}
               </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="text-[1rem] leading-relaxed text-stone">{archive.legendIntro}</p>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mb-2 font-mono text-[0.78rem] uppercase tracking-[0.24em] text-stone">

@@ -12,8 +12,8 @@ export default function Travel() {
     <section id="viagem" className="relative px-5 py-24 sm:px-10 md:py-36">
       <div className="mx-auto max-w-6xl">
         <ChapterHeader
-          no="05"
-          kicker="como a história se espalha"
+          no="04"
+          kicker="os meios por onde ela passou"
           title={renderTitle(travel.heading)}
         />
         <Reveal>
