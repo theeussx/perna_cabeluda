@@ -117,7 +117,7 @@ export default function Jumpscare() {
           if ("vibrate" in navigator) navigator.vibrate([100, 30, 200, 30, 300]);
         } catch {}
 
-        // after scare -> afterglow
+        // after scare -> afterglow (shake lasts as long as the scream now)
         timers.current.push(
           window.setTimeout(() => {
             setPhase("after");
@@ -126,14 +126,14 @@ export default function Jumpscare() {
             // restore scroll
             document.documentElement.style.overflow = "";
             document.body.style.overflow = "";
-          }, 950)
+          }, 1400)
         );
 
         // after -> done (allow credits)
         timers.current.push(
           window.setTimeout(() => {
             setPhase("done");
-          }, 950 + 3200)
+          }, 1400 + 3200)
         );
       }, 3800 + 2200 + 700)
     );

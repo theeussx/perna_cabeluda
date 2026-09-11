@@ -172,7 +172,7 @@
 2. **Botões fixos (canto inferior direito):** `som: on/off` (o som só liga após um clique) e `participantes` — ⚠️ esse **pula direto pra seção 08**, não clique sem querer.
 3. **Barra de progresso** no topo mostra onde vocês estão.
 4. **Cliques:** 3 cartões na seção 03 · **8 estações** na seção 04 (na ordem da fileira) · 2 botões na seção 07.
-5. **JUMPSCARE automático no fim** (~7s de tensão e o susto). Avisem a plateia antes e **regulem o volume**.
+5. **JUMPSCARE automático no fim** (~7s de tensão e o susto — o grito é **longo e alto de propósito**, ~5s com eco). Avisem a plateia antes e **regulem o volume do notebook na véspera**.
 6. **Não precisa de internet.** Apresente com o **build de produção**: `npm run build` → `npm run preview`, navegador em tela cheia (F11).
 7. **Se a última fileira não enxergar:** zoom do navegador em 110–125% (Ctrl e +).
 8. **Acessibilidade:** com "reduzir animações" ligado no sistema, **o jumpscare não acontece** (só as animações ficam simples). Testem na máquina do dia.
