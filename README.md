@@ -13,7 +13,8 @@ viva através das tecnologias atuais (cinema, internet, experiências digitais).
 > ponto (antes eram 18). Os meios de 1975 — jornal, rádio, cordel e cultura popular —
 > agora aparecem **resumidos em estações clicáveis** dentro da seção
 > *Como uma história viaja?*. Saíram: símbolo, mapa, linha do tempo e a seção
-> "a história chegou até você". Guia da equipe atualizado em `GUIA_APRESENTACAO.md`.
+> "a história chegou até você". Guia da equipe em `GUIA_APRESENTACAO.md` — feito para
+> **uma pessoa apresentar tudo sozinha** (~8 min), com fichas de bolso pra quem mais vier.
 
 ## Stack
 
