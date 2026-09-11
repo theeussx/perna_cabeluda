@@ -259,7 +259,7 @@ export const participants = {
   eyebrow: "participantes · quem fez este trabalho",
   heading: { text: "Quem fez esta história", em: "acontecer" },
   lead: [
-    "Este projeto é um trabalho escolar do Setembro Literário. Foi feito por cinco participantes — pesquisa, texto, design, código e apresentação — para contar como uma lenda do Recife continua viva, meio século depois.",
+    "Este projeto é um trabalho escolar do Setembro Literário. Foi feito por seis participantes — pesquisa, texto, design, código e apresentação — para contar como uma lenda do Recife continua viva, meio século depois.",
   ],
   outro: "Se esta página tivesse mais um elo, seria quem lê. Obrigado por chegar até aqui.",
 
@@ -270,6 +270,7 @@ export const participants = {
     { name: "Sérgio", role: "Participante" },
     { name: "Miguel Vinícius", role: "Participante" },
     { name: "Arthur Felipe", role: "Apresentador · contexto histórico" },
+    { name: "Lucas Henrique", role: "Participante" },
   ],
 };
 
