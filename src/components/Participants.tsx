@@ -30,10 +30,10 @@ export default function Participants() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-px bg-bone/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid auto-rows-fr gap-px bg-bone/10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {participants.people.map((p, i) => (
             <Reveal key={p.name + i} delay={(i % 4) * 0.06}>
-              <article className="group relative h-full bg-ink p-7 transition-colors hover:bg-[#0e0d09]">
+              <article className="group relative flex h-full min-h-[15rem] flex-col bg-ink p-7 transition-colors hover:bg-[#0e0d09]">
                 <div className="flex items-start justify-between">
                   <div className="flex h-14 w-14 items-center justify-center border border-bone/20 bg-coal font-serif text-2xl text-bloodsoft transition-colors group-hover:border-bloodsoft/50">
                     {initials(p.name)}
@@ -45,6 +45,18 @@ export default function Participants() {
 
                 <h3 className="mt-6 font-serif text-3xl leading-tight text-paper">{p.name}</h3>
                 <Tag className="mt-4 text-bone">{p.role}</Tag>
+
+                {p.name === "Mateus Henrique" && (
+                  <a
+                    href="https://theeussx.vercel.app"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-auto inline-flex w-fit items-center gap-2 border border-bloodsoft/70 bg-bloodsoft/15 px-3 py-2 pt-2.5 font-mono text-[0.76rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors hover:border-bone hover:bg-bloodsoft/35"
+                  >
+                    ver portfólio
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                )}
 
                 <span
                   aria-hidden="true"

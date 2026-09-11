@@ -259,20 +259,17 @@ export const participants = {
   eyebrow: "participantes · quem fez este trabalho",
   heading: { text: "Quem fez esta história", em: "acontecer" },
   lead: [
-    "Este projeto é um trabalho escolar do Setembro Literário. Foi feito a oito mãos — pesquisa, texto, design, código e apresentação — para contar como uma lenda do Recife continua viva, meio século depois.",
+    "Este projeto é um trabalho escolar do Setembro Literário. Foi feito por cinco participantes — pesquisa, texto, design, código e apresentação — para contar como uma lenda do Recife continua viva, meio século depois.",
   ],
   outro: "Se esta página tivesse mais um elo, seria quem lê. Obrigado por chegar até aqui.",
 
-  /** Edite a lista abaixo com os nomes e funções reais da equipe. */
+  /** Lista final de participantes do trabalho. */
   people: [
     { name: "Mateus Henrique", role: "Desenvolvedor" },
-    { name: "Arthur Felipe", role: "Apresentador · contexto histórico" },
-    { name: "Braga", role: "Apresentador · a lenda que virou verso" },
-    { name: "Erison Carlos", role: "Apresentador · como uma história viaja" },
-    { name: "Luiz Henrique", role: "Apresentador · quando o pavor vira cultura" },
-    { name: "Lucas Henrique", role: "Apresentador · a voz que ninguém gravou" },
     { name: "Davi Guedes", role: "Apresentador · a página que registrou" },
-    { name: "Miquel Vinicius", role: "Apresentador · ela voltou para a tela" },
+    { name: "Sérgio", role: "Participante" },
+    { name: "Miguel Vinícius", role: "Participante" },
+    { name: "Arthur Felipe", role: "Apresentador · contexto histórico" },
   ],
 };
 

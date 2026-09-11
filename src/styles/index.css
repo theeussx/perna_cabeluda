@@ -34,17 +34,17 @@
   --blood: #8a1e16;
   /* Tamanho-base da pagina. Tudo em rem escala a partir daqui.
      Projetor: 18px em telas >= 1280px, 19px em >= 1600px. */
-  --base-font: 17px;
+  --base-font: 18px;
 }
 
 @media (min-width: 1280px) {
   :root {
-    --base-font: 18px;
+    --base-font: 19px;
   }
 }
 @media (min-width: 1600px) {
   :root {
-    --base-font: 19px;
+    --base-font: 20px;
   }
 }
 
@@ -70,7 +70,7 @@ body {
   color: var(--paper);
   font-family: "Inter", system-ui, sans-serif;
   font-weight: 400;
-  line-height: 1.6;
+  line-height: 1.68;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
@@ -86,7 +86,7 @@ body {
 }
 @media (min-width: 768px) {
   #grain {
-    opacity: 0.2;
+    opacity: 0.14;
   }
 }
 
