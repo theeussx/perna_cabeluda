@@ -154,18 +154,22 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     void ctx.resume();
     const now = ctx.currentTime;
 
-    // Reinforce the synthetic hit with a real, short human scream.
+    // Reinforce the synthetic hit with a real human scream. The file has no
+    // leading silence and carries its own echo tail (~5s), so let it play to
+    // the end instead of cutting it off after a fixed 1.25s.
     try {
       a.scream.pause();
       a.scream.currentTime = 0;
       a.scream.volume = 1;
       void a.scream.play().catch(() => {});
+      const screamDuration =
+        isFinite(a.scream.duration) && a.scream.duration > 0 ? a.scream.duration : 5.4;
       window.setTimeout(() => {
         if (audioRef.current) {
           audioRef.current.scream.pause();
           audioRef.current.scream.currentTime = 0;
         }
-      }, 1250);
+      }, screamDuration * 1000 + 150);
     } catch {}
 
     // DUCK the ambient - sudden silence before boom makes it scarier
