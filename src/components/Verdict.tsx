@@ -29,7 +29,7 @@ export default function Verdict() {
   return (
     <section id="veredito" className="relative flex min-h-screen items-center justify-center px-5 py-24">
       <div className="w-full max-w-3xl text-center">
-        <ChapterHeader no="15" kicker="verdade ou lenda" title={renderTitle(verdict.heading)} align="center" />
+        <ChapterHeader no="07" kicker="verdade ou lenda" title={renderTitle(verdict.heading)} align="center" />
 
         <AnimatePresence mode="wait">
           {step === "ask" && (

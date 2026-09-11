@@ -9,6 +9,12 @@ viva através das tecnologias atuais (cinema, internet, experiências digitais).
 
 > **As tecnologias mudam. As histórias permanecem.**
 
+> ✂️ **Versão resumida.** O site foi enxugado para **8 seções**, para ficar direto ao
+> ponto (antes eram 18). Os meios de 1975 — jornal, rádio, cordel e cultura popular —
+> agora aparecem **resumidos em estações clicáveis** dentro da seção
+> *Como uma história viaja?*. Saíram: símbolo, mapa, linha do tempo e a seção
+> "a história chegou até você". Guia da equipe atualizado em `GUIA_APRESENTACAO.md`.
+
 ## Stack
 
 - React 18 + TypeScript
@@ -30,30 +36,25 @@ npm run preview  # serve o build
 
 ```
 src/
-  App.tsx                     — monta as seções na ordem narrativa
+  App.tsx                     — monta as seções na ordem narrativa (8 seções)
   content/index.ts            — ⭐ TODOS OS TEXTOS E DADOS DO SITE (edite aqui!)
   components/                 — só leem os dados de content/ (quase nunca editar)
     Entrance.tsx              — 01 · RECIFE 1975, "você conhece essa história?"
-    PernaReveal.tsx           — 02–03 · aparição (reveal por scroll) e revelação
-    Archive.tsx               — 04 · ARQUIVO 1975 + FATO/RELATO/LENDA/INTERPRETAÇÃO
-    Travel.tsx                — 05 · como uma história viaja (cadeia interativa)
-    Newspaper.tsx             — 06 · o jornal (dez/1975)
-    Radio.tsx                 — 07 · rádio (recriação artística)
-    Cordel.tsx                — 08 · cordel original
-    Contexto.tsx              — 09 · o que existia por trás da lenda
-    Symbol.tsx                — 10 · a perna como símbolo
-    Map.tsx                   — 11 · mapa estilizado do Recife
-    Timeline.tsx              — 12 · linha do tempo
-    Culture.tsx               — 13 · cultura popular
-    Cinema.tsx                — 14 · "ela voltou para a tela"
-    Verdict.tsx               — 15 · "você acredita?"
-    YouAreNow.tsx             — 16 · a história chegou até você
+    PernaReveal.tsx           — 02 · a aparição (reveal por scroll)
+    Archive.tsx               — 03 · ARQUIVO 1975 + FATO/RELATO/LENDA/INTERPRETAÇÃO
+    Travel.tsx                — 04 · como uma história viaja (8 estações clicáveis:
+                                     relato, jornal, rádio, cordel, cultura,
+                                     cinema, internet, você)
+    Contexto.tsx              — 05 · o que existia por trás da lenda
+    Cinema.tsx                — 06 · "ela voltou para a tela"
+    Verdict.tsx               — 07 · "você acredita?"
+    Participants.tsx          — 08 · quem fez esta história acontecer
     Finale.tsx                — final · esvaziamento, 1975→2026, a sombra que passa
     Ending.tsx                — título final + FONTES/ARQUIVO
     Legend.tsx                — FATO / RELATO / LENDA / INTERPRETAÇÃO
     Film.tsx                  — grão de filme (canvas procedural, sem assets)
     AudioContext.tsx          — áudio ambiente (Web Audio, só após interação)
-    Chrome.tsx                — barra de progresso + botão SOM on/off
+    Chrome.tsx                — barra de progresso + botões SOM e PARTICIPANTES
   styles/index.css            — design tokens, tipografia, utilitários
 ```
 
@@ -66,8 +67,7 @@ O site foi calibrado para ser lido **de longe, num projetor**:
   usa `rem`, mudar esse valor escala tudo de uma vez.
 - **Fontes servidas localmente** via `@fontsource` (importadas no topo de
   `index.css`) — não dependem do Google Fonts nem de internet no dia.
-- **Pesos**: Cormorant Garamond em 500 (o 400 é fino demais em projeção) e
-  IBM Plex Mono em 500.
+- **Pesos**: Cormorant Garamond em 500 (o 400 é fino demais em projeção) e IBM Plex Mono em 500.
 - **Contraste**: o cinza `stone` passou de `#5C5C50` (2.9:1) para `#A39C86`
   (7.3:1); o vermelho `bloodsoft` de `#A63A2B` para `#C4503F` (4.4:1).
   Nenhum texto fica abaixo de ~0.72rem (≈13–14px).
@@ -75,22 +75,27 @@ O site foi calibrado para ser lido **de longe, num projetor**:
 Se a sala for muito grande ou o projetor fraco, aumente `--base-font` (ex.: 20–21px)
 ou use o zoom do navegador (Ctrl e +): o layout foi testado até 1280×720.
 
+**Nada no site depende de internet** durante a apresentação (as fontes são locais e
+não há mais mapa online).
+
 Assets (`public/art/*.webp`) são ilustrações originais geradas para este projeto;
 versos de cordel e composições são originais, sem reproduzir obras protegidas.
 
 ### Como editar o conteúdo (futuro)
 
 Todo o texto, dados, títulos e listas ficam em **`src/content/index.ts`**, organizado
-por seção (entrance, reveal, archive, travel, newspaper, radio, cordel, contexto,
-symbol, mapSection, timeline, culture, cinema, verdict, youarenow, finale, ending).
-Os componentes apenas leem essas constantes — **não é preciso mexer em JSX/CSS** para
-alterar frases, datas, cartões, pontos do mapa, versos ou fontes.
+por seção (entrance, reveal, archive, legend, travel, contexto, cinema, verdict,
+participants, finale, ending). Os componentes apenas leem essas constantes —
+**não é preciso mexer em JSX/CSS** para alterar frases, datas, cartões ou fontes.
 
 - Um texto com vários parágrafos é um *array* de strings.
 - `heading: { text, em }` — o trecho `em` aparece destacado em vermelho-escuro.
+- `travel.stages` é a fileira de estações da seção 04: cada item tem `label`
+  (o botão), `era` ("1970" ou "hoje"), `title` e `body`. Para acrescentar ou
+  remover um meio, basta editar essa lista.
 - Atualize sempre as fontes em `ending.groups` ao mudar fatos.
 - Nunca invente datas, nomes ou citações; em caso de divergência entre fontes,
-  apresente a divergência (como em `archive.cards[].origem` e nos relatos do rádio).
+  apresente a divergência (como em `archive.cards[].tags`).
 
 ## Notas editoriais importantes
 

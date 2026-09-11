@@ -47,7 +47,7 @@ export default function Finale() {
   });
 
   return (
-    <div ref={ref} className="relative h-[560vh] bg-black" id="final">
+    <div ref={ref} className="relative h-[360vh] bg-black" id="final">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
         <motion.div className="absolute inset-0 bg-black" style={{ opacity: vignette }} />
 

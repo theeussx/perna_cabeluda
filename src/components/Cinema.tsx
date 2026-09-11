@@ -6,7 +6,7 @@ export default function Cinema() {
   return (
     <section id="cinema" className="relative overflow-hidden bg-[#040302] px-5 py-24 sm:px-10 md:py-36">
       <div className="mx-auto max-w-6xl">
-        <ChapterHeader no="14" kicker="cinema" title={<TextReveal text={cinema.heading.text} />} />
+        <ChapterHeader no="06" kicker="cinema" title={<TextReveal text={cinema.heading.text} />} />
         <div className="mt-4 grid items-start gap-12 lg:grid-cols-2">
           <Reveal>
             <figure className="relative">
@@ -56,9 +56,6 @@ export default function Cinema() {
                   </div>
                 ))}
               </div>
-            </Reveal>
-            <Reveal>
-              <p className="text-[1rem] text-stone">{cinema.note}</p>
             </Reveal>
             <Reveal>
               <div className="border-l-2 border-bone/40 bg-white/[0.02] p-4">
