@@ -48,7 +48,7 @@ export default function Participants() {
 
                 {p.name === "Mateus Henrique" && (
                   <a
-                    href="https://theeussx.vercel.app"
+                    href="https://theeussx.online"
                     target="_blank"
                     rel="noreferrer"
                     className="mt-auto inline-flex w-fit items-center gap-2 border border-bloodsoft/70 bg-bloodsoft/15 px-3 py-2 pt-2.5 font-mono text-[0.76rem] font-semibold uppercase tracking-[0.12em] text-paper transition-colors hover:border-bone hover:bg-bloodsoft/35"
